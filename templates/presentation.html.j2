@@ -1,0 +1,95 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>{{ stage.name }} financial conversation</title>
+  <style>
+    :root { --ink: #102a43; --navy: #163d59; --teal: #16827a; --mist: #eaf3f4; --gold: #e5ad32; --red: #c94b4b; --yellow: #b67b00; }
+    * { box-sizing: border-box; }
+    body { margin: 0; color: var(--ink); background: #0b1f30; font: 20px/1.45 system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; }
+    .deck { height: 100vh; overflow: hidden; position: relative; }
+    .slide { display: none; min-height: 100%; padding: clamp(2rem, 6vw, 6rem); background: #fff; }
+    .slide.active { display: flex; flex-direction: column; justify-content: center; }
+    .title { color: #fff; background: linear-gradient(135deg, var(--navy), var(--teal)); }
+    .eyebrow { color: var(--teal); font-size: .8em; font-weight: 800; letter-spacing: .12em; text-transform: uppercase; }
+    .title .eyebrow { color: #b8ebe5; }
+    h1 { font-size: clamp(3rem, 8vw, 7rem); line-height: 1; margin: .25rem 0 1rem; max-width: 14ch; }
+    h2 { font-size: clamp(2rem, 5vw, 4.5rem); line-height: 1.08; margin: .25rem 0 1.25rem; max-width: 20ch; }
+    h3 { font-size: 1.25em; margin: 0 0 .4rem; }
+    p { max-width: 58rem; margin: .25rem 0 1rem; }
+    .quote { color: var(--navy); border-left: .35rem solid var(--gold); font-size: clamp(1.35rem, 2.6vw, 2.2rem); font-weight: 650; max-width: 48rem; padding-left: 1.2rem; }
+    .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(15rem, 1fr)); gap: 1rem; max-width: 70rem; }
+    .card { background: var(--mist); border-radius: 1rem; padding: 1.2rem; }
+    .score { display: inline-block; border-radius: 99rem; color: #fff; font-size: .75em; font-weight: 800; letter-spacing: .06em; padding: .25rem .7rem; text-transform: uppercase; }
+    .score.red { background: var(--red); } .score.yellow { background: var(--yellow); }
+    .solution { border-top: .3rem solid var(--teal); } .objection { border-top: .3rem solid var(--gold); }
+    .disclaimer { color: #486581; font-size: .72em; margin-top: 1rem; }
+    .controls { bottom: 1rem; color: #fff; display: flex; gap: .8rem; position: fixed; right: 1.2rem; z-index: 2; }
+    button { background: rgba(11,31,48,.86); border: 1px solid rgba(255,255,255,.45); border-radius: 99rem; color: #fff; cursor: pointer; font: inherit; padding: .45rem .8rem; }
+    .counter { align-self: flex-end; color: #627d98; font-size: .8em; margin-top: auto; }
+    @media print { body, .deck { background: #fff; height: auto; overflow: visible; } .slide, .slide.active { display: flex; min-height: 100vh; page-break-after: always; } .controls { display: none; } }
+  </style>
+</head>
+<body>
+  <main class="deck" aria-label="Financial conversation presentation">
+    <section class="slide title active">
+      <p class="eyebrow">Financial conversation</p>
+      <h1>{{ stage.name }}</h1>
+      <p>{{ stage.description }}</p>
+      <p>Use the arrow keys or controls to advance.</p>
+    </section>
+    <section class="slide">
+      <p class="eyebrow">Stage context</p>
+      <h2>Start with the life they are building.</h2>
+      <p>{{ stage.body }}</p>
+      <p class="quote">“{{ stage.opening_line }}”</p>
+    </section>
+    <section class="slide">
+      <p class="eyebrow">Conversation goal</p>
+      <h2>Lead with a quick, tangible win.</h2>
+      <p class="quote">{{ stage.quick_win }}</p>
+    </section>
+{% for pillar in weak_pillars %}
+    <section class="slide">
+      <p class="eyebrow">Priority {{ loop.index }}</p>
+      <h2>{{ pillar.name }} <span class="score {{ scores[pillar.id] }}">{{ scores[pillar.id] }}</span></h2>
+      <p class="quote">{{ pillar.self_score_question }}</p>
+      <p><strong>What is at risk:</strong> {{ pillar.failure_mode }}</p>
+      <p>{{ pillar.body }}</p>
+    </section>
+{% endfor %}
+{% if objections %}
+    <section class="slide">
+      <p class="eyebrow">Listen for this</p>
+      <h2>Common concern, useful reframe.</h2>
+      <div class="grid">
+{% for objection in objections %}
+        <article class="card objection"><h3>“{{ objection.objection_text }}”</h3><p>{{ objection.body }}</p></article>
+{% endfor %}
+      </div>
+    </section>
+{% endif %}
+{% for group in solution_groups %}
+    <section class="slide">
+      <p class="eyebrow">Options to explore</p>
+      <h2>Category-level next steps.</h2>
+      <div class="grid">
+{% for solution in group %}
+        <article class="card solution"><h3>{{ solution.category }}</h3><p>{{ solution.body | replace('Actual recommendations require a full needs analysis and current licensed product/carrier options — this is a category guide only.', '') }}</p></article>
+{% endfor %}
+      </div>
+      <p class="disclaimer">Actual recommendations require a full needs analysis and current licensed product/carrier options — this is a category guide only.</p>
+    </section>
+{% endfor %}
+  </main>
+  <div class="controls"><button type="button" id="previous" aria-label="Previous slide">←</button><button type="button" id="next" aria-label="Next slide">→</button></div>
+  <script>
+    const slides = [...document.querySelectorAll('.slide')]; let current = 0;
+    function show(index) { current = (index + slides.length) % slides.length; slides.forEach((slide, i) => slide.classList.toggle('active', i === current)); document.title = `${current + 1}/${slides.length} · {{ stage.name }} financial conversation`; }
+    document.getElementById('previous').addEventListener('click', () => show(current - 1));
+    document.getElementById('next').addEventListener('click', () => show(current + 1));
+    document.addEventListener('keydown', event => { if (['ArrowRight', 'PageDown', ' '].includes(event.key)) show(current + 1); if (['ArrowLeft', 'PageUp'].includes(event.key)) show(current - 1); });
+  </script>
+</body>
+</html>

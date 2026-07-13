@@ -11,6 +11,7 @@ This is a small, file-based content system for turning a family's life stage and
 - `templates/` — render targets for a meeting agenda and training stage card.
 - `scripts/` — the generator and small loading/model helpers.
 - `output/` — generated files (ignored by Git).
+- `docs/` — the generated HTML presentation location for GitHub Pages.
 
 ## Setup and run
 
@@ -25,6 +26,18 @@ python scripts/build_meeting_agenda.py \
 ```
 
 The generator writes `output/{stage}-{timestamp}-agenda.md` and prints the weak pillars plus counts of included objections and solution categories.
+
+## Render a presentation for GitHub Pages
+
+The presentation renderer creates a self-contained HTML deck: no presentation platform, external JavaScript, or CDN is required. It supports arrow keys, on-page controls, responsive viewing, and printing to PDF.
+
+```bash
+python scripts/build_presentation.py \
+  --stage building \
+  --scores protection=yellow,liquidity=yellow,accumulation=yellow,retirement-income=green,longevity-legacy=green
+```
+
+By default this writes `docs/index.html`. Commit and push that generated file, then in GitHub open **Settings → Pages**, select **Deploy from a branch**, choose `main`, and select the `/docs` folder. GitHub will publish the deck at the repository's Pages URL. Use `--output path/to/deck.html` to generate a separate local HTML file instead.
 
 ## Adding content
 
