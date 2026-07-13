@@ -1,0 +1,30 @@
+# {{ stage.name }} stage card
+
+**Stage context:** {{ stage.description }}
+
+{{ stage.body }}
+
+## Conversation opener
+{{ stage.opening_line }}
+
+## Likely weak pillars
+{% for pillar in pillars %}
+### {{ pillar.name }}
+**Self-assessment:** {{ pillar.self_score_question }}
+
+{{ pillar.body }}
+{% endfor %}
+
+## Objections to expect
+{% for objection in objections %}
+- **“{{ objection.objection_text }}”** — {{ objection.body }}
+{% endfor %}
+
+## Relevant solution categories
+{% for solution in solutions %}
+### {{ solution.category }}
+{{ solution.body }}
+{% endfor %}
+
+## Quick win
+{{ stage.quick_win }}

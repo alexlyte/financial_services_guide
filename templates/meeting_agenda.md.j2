@@ -1,0 +1,33 @@
+# Meeting Brief: {{ stage.name }}
+
+## Stage context
+{{ stage.description }}
+
+{{ stage.body }}
+
+**Opening line:** {{ stage.opening_line }}
+
+## Weak pillars
+{% for pillar in weak_pillars %}
+### {{ pillar.name }} — {{ scores[pillar.id] | upper }}
+**Self-assessment:** {{ pillar.self_score_question }}
+
+**Why it matters:** {{ pillar.failure_mode }}
+{% endfor %}
+
+## Relevant objections and reframes
+{% for objection in objections %}
+- **“{{ objection.objection_text }}”**  
+  {{ objection.body }}
+{% else %}
+No stage-specific objections are currently recorded.
+{% endfor %}
+
+## Relevant solution categories
+{% for solution in solutions %}
+### {{ solution.category }}
+{{ solution.body }}
+{% endfor %}
+
+## Quick win to lead with
+{{ stage.quick_win }}
