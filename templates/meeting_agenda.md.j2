@@ -15,6 +15,14 @@
 **Why it matters:** {{ pillar.failure_mode }}
 {% endfor %}
 
+## Questions to ask this family
+{% for question in checklist_questions %}
+- **{{ question.prompt }}**
+  {{ question.body }}
+{% else %}
+No stage-specific checklist questions are currently recorded for the weak pillars.
+{% endfor %}
+
 ## Relevant objections and reframes
 {% for objection in objections %}
 - **“{{ objection.objection_text }}”**  

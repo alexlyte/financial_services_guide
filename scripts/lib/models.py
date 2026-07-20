@@ -35,6 +35,15 @@ class Objection:
 
 
 @dataclass
+class ChecklistQuestion:
+    id: str
+    stage: str
+    pillar: str
+    prompt: str
+    body: str
+
+
+@dataclass
 class Solution:
     id: str
     pillar: str

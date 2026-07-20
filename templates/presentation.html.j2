@@ -26,7 +26,7 @@
     .solution { border-top: .3rem solid var(--teal); } .objection { border-top: .3rem solid var(--gold); }
     .disclaimer { color: #486581; font-size: .72em; margin-top: 1rem; }
     .controls { bottom: 1rem; color: #fff; display: flex; gap: .8rem; position: fixed; right: 1.2rem; z-index: 2; }
-    button { background: rgba(11,31,48,.86); border: 1px solid rgba(255,255,255,.45); border-radius: 99rem; color: #fff; cursor: pointer; font: inherit; padding: .45rem .8rem; }
+    button, a.checklist-link { background: rgba(11,31,48,.86); border: 1px solid rgba(255,255,255,.45); border-radius: 99rem; color: #fff; cursor: pointer; font: inherit; padding: .45rem .8rem; text-decoration: none; }
     .counter { align-self: flex-end; color: #627d98; font-size: .8em; margin-top: auto; }
     @media print { body, .deck { background: #fff; height: auto; overflow: visible; } .slide, .slide.active { display: flex; min-height: 100vh; page-break-after: always; } .controls { display: none; } }
   </style>
@@ -83,7 +83,7 @@
     </section>
 {% endfor %}
   </main>
-  <div class="controls"><button type="button" id="previous" aria-label="Previous slide">←</button><button type="button" id="next" aria-label="Next slide">→</button></div>
+  <div class="controls"><a class="checklist-link" href="checklist.html">Client checklist</a><button type="button" id="previous" aria-label="Previous slide">←</button><button type="button" id="next" aria-label="Next slide">→</button></div>
   <script>
     const slides = [...document.querySelectorAll('.slide')]; let current = 0;
     function show(index) { current = (index + slides.length) % slides.length; slides.forEach((slide, i) => slide.classList.toggle('active', i === current)); document.title = `${current + 1}/${slides.length} · {{ stage.name }} financial conversation`; }
