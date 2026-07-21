@@ -1,0 +1,253 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Life-stage client checklist</title>
+  <style>
+    :root {
+      --ink: #102a43; --navy: #163d59; --teal: #16827a; --mist: #eaf3f4; --gold: #e5ad32;
+      --protection: #c94b4b; --liquidity: #b67b00; --accumulation: #16827a;
+      --retirement-income: #2f6fb0; --longevity-legacy: #7a4fb5;
+    }
+    * { box-sizing: border-box; }
+    body { margin: 0; color: var(--ink); background: #f4f8f9; font: 18px/1.5 system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; }
+    header.hero { background: linear-gradient(135deg, var(--navy), var(--teal)); color: #fff; padding: clamp(2rem, 6vw, 4rem) clamp(1.25rem, 6vw, 4rem) 2.5rem; }
+    header.hero .eyebrow { color: #b8ebe5; font-size: .8em; font-weight: 800; letter-spacing: .12em; text-transform: uppercase; }
+    header.hero h1 { font-size: clamp(2rem, 5vw, 3.2rem); margin: .25rem 0 1rem; max-width: 24ch; }
+    header.hero p { max-width: 52rem; margin: 0; opacity: .92; }
+    nav.stage-nav { background: #fff; border-bottom: 1px solid #d9e2ec; display: flex; flex-wrap: wrap; gap: .4rem; padding: .8rem clamp(1.25rem, 6vw, 4rem); position: sticky; top: 0; z-index: 2; }
+    nav.stage-nav a { background: var(--mist); border-radius: 99rem; color: var(--navy); font-size: .82rem; font-weight: 700; padding: .4rem .9rem; text-decoration: none; }
+    nav.stage-nav a:hover, nav.stage-nav a:focus { background: var(--teal); color: #fff; }
+    nav.stage-nav a.checklist-link { background: var(--gold); color: var(--ink); margin-left: auto; }
+    main { margin: 0 auto; max-width: 64rem; padding: 1rem clamp(1.25rem, 6vw, 4rem) 4rem; }
+    section.stage { border-top: 1px solid #d9e2ec; padding: 2.5rem 0; scroll-margin-top: 4rem; }
+    section.stage:first-of-type { border-top: none; }
+    section.stage .eyebrow { color: var(--teal); font-size: .8em; font-weight: 800; letter-spacing: .1em; text-transform: uppercase; }
+    section.stage h2 { font-size: clamp(1.5rem, 3vw, 2.1rem); margin: .2rem 0 .3rem; }
+    section.stage > p.description { color: #486581; margin: 0 0 1.5rem; max-width: 48rem; }
+    ul.questions { display: grid; gap: 1rem; list-style: none; margin: 0; padding: 0; }
+    ul.questions li { background: #fff; border-radius: .9rem; box-shadow: 0 1px 2px rgba(16, 42, 67, .08); padding: 1.1rem 1.3rem; }
+    .pillar-tag { border-radius: 99rem; color: #fff; display: inline-block; font-size: .7rem; font-weight: 800; letter-spacing: .05em; margin-bottom: .5rem; padding: .2rem .65rem; text-transform: uppercase; }
+    .pillar-tag.protection { background: var(--protection); }
+    .pillar-tag.liquidity { background: var(--liquidity); }
+    .pillar-tag.accumulation { background: var(--accumulation); }
+    .pillar-tag.retirement-income { background: var(--retirement-income); }
+    .pillar-tag.longevity-legacy { background: var(--longevity-legacy); }
+    .prompt { font-size: 1.05rem; font-weight: 650; margin: 0 0 .4rem; }
+    .why { color: #486581; font-size: .92rem; margin: 0; }
+    footer { color: #829ab1; font-size: .8rem; padding: 1rem clamp(1.25rem, 6vw, 4rem) 3rem; }
+  </style>
+</head>
+<body>
+  <header class="hero">
+    <p class="eyebrow">Client conversation guide</p>
+    <h1>What to ask at every life stage</h1>
+    <p>Questions clients and their families should sit with for themselves — not sales questions, self-reflection prompts that make the need for planning concrete. Grouped by the life stage a household is in and the financial pillar each question touches.</p>
+  </header>
+  <nav class="stage-nav" aria-label="Jump to a life stage">
+    <a href="#launching">Launching</a>
+    <a href="#building">Building</a>
+    <a href="#growing-family">Growing family</a>
+    <a href="#peak-earning">Peak earning</a>
+    <a href="#pre-retirement">Pre-retirement / empty nest</a>
+    <a href="#retirement">Retirement / legacy</a>
+    <a class="checklist-link" href="index.html">Presentation deck</a>
+  </nav>
+  <main>
+    <section class="stage" id="launching">
+      <p class="eyebrow">Life stage</p>
+      <h2>Launching</h2>
+      <p class="description">20s, single or newly partnered</p>
+      <ul class="questions">
+        <li>
+          <span class="pillar-tag protection">Protection</span>
+          <p class="prompt">If you carry student loans, a car loan, or credit card debt and something happened to you, who is left holding it — a co-signer, a parent, no one?</p>
+          <p class="why">"I don't need life insurance, I have no kids" ignores that debt and co-signers don't disappear. Reframe protection around who inherits the liability, not just who inherits the loss of income.</p>
+        </li>
+        <li>
+          <span class="pillar-tag protection">Protection</span>
+          <p class="prompt">If you were diagnosed with a serious illness tomorrow and couldn't work for six months, could you still pay rent and keep your lifestyle — or would you need help?</p>
+          <p class="why">Single earners have no second income to fall back on. This is the fastest way to make protection concrete and personal instead of abstract.</p>
+        </li>
+        <li>
+          <span class="pillar-tag liquidity">Liquidity</span>
+          <p class="prompt">If your car broke down and you lost your job in the same month, do you have 3-6 months of expenses saved — or would one bad month land on a credit card?</p>
+          <p class="why">At this stage liquidity is usually the first real gap: income is growing but savings haven't caught up yet, and there's no partner's income to absorb a shock.</p>
+        </li>
+        <li>
+          <span class="pillar-tag accumulation">Accumulation</span>
+          <p class="prompt">Are you contributing enough to get the full employer 401(k) match, or is that free money currently left on the table?</p>
+          <p class="why">This is the lowest-friction accumulation win available: no budget change required, just capturing money that's already been offered.</p>
+        </li>
+        <li>
+          <span class="pillar-tag longevity-legacy">Longevity/Legacy</span>
+          <p class="prompt">If something happened to you, would anyone actually know your wishes — do you have a beneficiary named anywhere, or a will?</p>
+          <p class="why">Most people this age assume they're too young for this to matter. The point isn't the document, it's that decisions get made by default (state law, whoever's listed on an old form) instead of on purpose.</p>
+        </li>
+      </ul>
+    </section>
+    <section class="stage" id="building">
+      <p class="eyebrow">Life stage</p>
+      <h2>Building</h2>
+      <p class="description">Partnered/married, no kids yet or planning</p>
+      <ul class="questions">
+        <li>
+          <span class="pillar-tag protection">Protection</span>
+          <p class="prompt">Have you talked about what happens financially if one of you passes away unexpectedly — not just emotionally, but literally: whose name is on what, and who inherits it?</p>
+          <p class="why">Couples at this stage have usually discussed the emotional side of loss but rarely the mechanical side: accounts, titling, and who has access to what.</p>
+        </li>
+        <li>
+          <span class="pillar-tag protection">Protection</span>
+          <p class="prompt">If one of you couldn't work due to illness or injury, could the household still cover rent or the mortgage on one income alone?</p>
+          <p class="why">Two incomes often mean two lifestyles built on the assumption both keep coming in. Protection here is testing that assumption before life does.</p>
+        </li>
+        <li>
+          <span class="pillar-tag liquidity">Liquidity</span>
+          <p class="prompt">Do you have a shared emergency fund, or is each of you quietly assuming the other person has savings to fall back on?</p>
+          <p class="why">"Both work, so we're covered" is a common but untested assumption. Ask each partner separately what they believe the number is — the gap is often the real finding.</p>
+        </li>
+        <li>
+          <span class="pillar-tag accumulation">Accumulation</span>
+          <p class="prompt">Are you both saving toward the same goals — a home, kids, retirement — or making decisions independently that could conflict later?</p>
+          <p class="why">This stage is where separate financial habits either merge into a plan or quietly compound into two different plans that collide down the road.</p>
+        </li>
+        <li>
+          <span class="pillar-tag longevity-legacy">Longevity/Legacy</span>
+          <p class="prompt">If you're planning a life together — or a family — have you updated beneficiary designations and a will to reflect that, or are they still set from before you met?</p>
+          <p class="why">Old beneficiary forms are one of the most common and easiest-to-fix gaps: a five-minute update that prevents money going to the wrong person entirely.</p>
+        </li>
+      </ul>
+    </section>
+    <section class="stage" id="growing-family">
+      <p class="eyebrow">Life stage</p>
+      <h2>Growing family</h2>
+      <p class="description">Kids at home</p>
+      <ul class="questions">
+        <li>
+          <span class="pillar-tag protection">Protection</span>
+          <p class="prompt">Have you named a guardian for your kids in writing, or is that still just a conversation you've had?</p>
+          <p class="why">Naming a guardian and reviewing beneficiaries is free, fast, and often reveals the family has never actually finished this — a quick win that opens the door to the bigger conversation.</p>
+        </li>
+        <li>
+          <span class="pillar-tag protection">Protection</span>
+          <p class="prompt">If something happened to you tomorrow, would your family's day-to-day life actually stay the same — same house, same school, same routine — or would something have to give?</p>
+          <p class="why">This is the question that makes protection real for parents: not abstract "coverage," but whether the kids' world stays stable.</p>
+        </li>
+        <li>
+          <span class="pillar-tag liquidity">Liquidity</span>
+          <p class="prompt">If one parent had to stop working for a few months to care for a sick child, how long could the household sustain that on savings alone?</p>
+          <p class="why">Families at this stage often have some savings, but rarely have sized it against a real caregiving scenario rather than a generic "emergency."</p>
+        </li>
+        <li>
+          <span class="pillar-tag accumulation">Accumulation</span>
+          <p class="prompt">Are you saving for your kids' education in a way that competes with your own retirement savings — or protects it?</p>
+          <p class="why">Kids can borrow for school; parents can't borrow for retirement. Surfacing this trade-off early prevents an accidental choice made by default years later.</p>
+        </li>
+        <li>
+          <span class="pillar-tag longevity-legacy">Longevity/Legacy</span>
+          <p class="prompt">If both parents were gone, is there a plan for who manages the money left behind for your kids — not just who raises them?</p>
+          <p class="why">Families plan for a guardian far more often than for a financial guardian. The two decisions are separate and both need an answer.</p>
+        </li>
+      </ul>
+    </section>
+    <section class="stage" id="peak-earning">
+      <p class="eyebrow">Life stage</p>
+      <h2>Peak earning</h2>
+      <p class="description">Teens, college-age kids</p>
+      <ul class="questions">
+        <li>
+          <span class="pillar-tag protection">Protection</span>
+          <p class="prompt">If your income stopped today, could you still fund the college plans you've already promised your kids?</p>
+          <p class="why">Peak-earning households often carry the biggest promises made against the least protected income — the gap between commitment and coverage is worth naming directly.</p>
+        </li>
+        <li>
+          <span class="pillar-tag liquidity">Liquidity</span>
+          <p class="prompt">Between paying for college and funding your own retirement, which one wins if you had to choose — and have you actually run that math, or just assumed it works out?</p>
+          <p class="why">This is usually the first time a family has to prioritize, not just save more. Naming the trade-off out loud is more useful than avoiding it.</p>
+        </li>
+        <li>
+          <span class="pillar-tag accumulation">Accumulation</span>
+          <p class="prompt">Are you still on pace to hit your retirement number, or has the last several years of family spending quietly pushed that timeline out?</p>
+          <p class="why">Peak-earning years are also peak-spending years. Checking the pace against the original goal — not just against last year — catches drift early enough to correct it.</p>
+        </li>
+        <li>
+          <span class="pillar-tag retirement-income">Retirement Income</span>
+          <p class="prompt">Do you know, in real numbers, what your household will need per month in retirement — or is it still a guess?</p>
+          <p class="why">With retirement close enough to plan for but still far enough to adjust, this is the window where a real number replaces a vague feeling.</p>
+        </li>
+        <li>
+          <span class="pillar-tag longevity-legacy">Longevity/Legacy</span>
+          <p class="prompt">If you became unable to make financial decisions — illness, an accident, cognitive decline — does anyone have the legal authority to step in?</p>
+          <p class="why">Households at this stage are managing college costs, aging parents, and their own finances at once; a missing power of attorney turns a hard moment into a legal one too.</p>
+        </li>
+      </ul>
+    </section>
+    <section class="stage" id="pre-retirement">
+      <p class="eyebrow">Life stage</p>
+      <h2>Pre-retirement / empty nest</h2>
+      <p class="description">5-15 years from retirement</p>
+      <ul class="questions">
+        <li>
+          <span class="pillar-tag protection">Protection</span>
+          <p class="prompt">If a major health event hit in the next 10 years, would it derail your retirement date?</p>
+          <p class="why">Protection at this stage isn't about replacing income for decades anymore — it's about keeping one bad year from undoing a decade of planning right before the finish line.</p>
+        </li>
+        <li>
+          <span class="pillar-tag accumulation">Accumulation</span>
+          <p class="prompt">Are you still maximizing catch-up contributions while you have earned income to do it with?</p>
+          <p class="why">The empty-nest years often free up cash flow right when catch-up limits are available — a short window worth using deliberately, not by accident.</p>
+        </li>
+        <li>
+          <span class="pillar-tag retirement-income">Retirement Income</span>
+          <p class="prompt">If you retired on your current savings today, would your income last as long as you might actually live?</p>
+          <p class="why">"Enough to retire" and "enough to not run out" are two different questions. This stage is the last real window to close that gap while still earning.</p>
+        </li>
+        <li>
+          <span class="pillar-tag retirement-income">Retirement Income</span>
+          <p class="prompt">Have you mapped out where your income will actually come from month to month in retirement — Social Security, pensions, withdrawals — or is the plan just 'the account will be there'?</p>
+          <p class="why">A total balance isn't a paycheck. Turning savings into a month-by-month income plan is the work that's easy to defer and expensive to skip.</p>
+        </li>
+        <li>
+          <span class="pillar-tag longevity-legacy">Longevity/Legacy</span>
+          <p class="prompt">Do you have a long-term care plan, or is the plan 'hope it doesn't happen'?</p>
+          <p class="why">This is the last stage where long-term care coverage is still readily available and affordable — waiting until retirement often means the option has already narrowed or closed.</p>
+        </li>
+      </ul>
+    </section>
+    <section class="stage" id="retirement">
+      <p class="eyebrow">Life stage</p>
+      <h2>Retirement / legacy</h2>
+      <p class="description">Living off assets</p>
+      <ul class="questions">
+        <li>
+          <span class="pillar-tag protection">Protection</span>
+          <p class="prompt">Does your spouse know how to manage the household finances if you're not there to do it?</p>
+          <p class="why">In many households one partner has handled the finances for decades. Protection here means transferring that knowledge, not just the assets.</p>
+        </li>
+        <li>
+          <span class="pillar-tag liquidity">Liquidity</span>
+          <p class="prompt">Do you have accessible cash outside of investments, so a market downturn doesn't force you to sell at a bad time?</p>
+          <p class="why">A cash buffer is what turns a market drop from an emergency into a non-event — it buys time to wait the market out instead of selling into it.</p>
+        </li>
+        <li>
+          <span class="pillar-tag retirement-income">Retirement Income</span>
+          <p class="prompt">If markets dropped 20% in your first few years of retirement, do you have a plan for that — or does your whole plan assume steady growth?</p>
+          <p class="why">Early-retirement downturns do outsized damage because withdrawals compound the loss. A sequence-of-returns plan matters more here than the average return ever will.</p>
+        </li>
+        <li>
+          <span class="pillar-tag longevity-legacy">Longevity/Legacy</span>
+          <p class="prompt">Is your estate plan actually up to date, and does your family know where to find it?</p>
+          <p class="why">Plans drafted decades ago often no longer reflect current wishes, accounts, or family circumstances — and a plan no one can locate works the same as no plan at all.</p>
+        </li>
+        <li>
+          <span class="pillar-tag longevity-legacy">Longevity/Legacy</span>
+          <p class="prompt">If you needed long-term care for several years, whose savings pays for it — yours, or what you meant to leave your kids?</p>
+          <p class="why">Without a plan, long-term care is funded out of whatever's left — quietly converting a legacy into a care bill.</p>
+        </li>
+      </ul>
+    </section>
+  </main>
+  <footer>Self-reflection prompts only — not individualized advice. Actual recommendations require a full needs analysis and current licensed product/carrier options.</footer>
+</body>
+</html>

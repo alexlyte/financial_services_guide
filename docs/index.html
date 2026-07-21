@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Building financial conversation</title>
+  <title>Launching financial conversation</title>
   <style>
     :root { --ink: #102a43; --navy: #163d59; --teal: #16827a; --mist: #eaf3f4; --gold: #e5ad32; --red: #c94b4b; --yellow: #b67b00; }
     * { box-sizing: border-box; }
@@ -26,7 +26,7 @@
     .solution { border-top: .3rem solid var(--teal); } .objection { border-top: .3rem solid var(--gold); }
     .disclaimer { color: #486581; font-size: .72em; margin-top: 1rem; }
     .controls { bottom: 1rem; color: #fff; display: flex; gap: .8rem; position: fixed; right: 1.2rem; z-index: 2; }
-    button { background: rgba(11,31,48,.86); border: 1px solid rgba(255,255,255,.45); border-radius: 99rem; color: #fff; cursor: pointer; font: inherit; padding: .45rem .8rem; }
+    button, a.checklist-link { background: rgba(11,31,48,.86); border: 1px solid rgba(255,255,255,.45); border-radius: 99rem; color: #fff; cursor: pointer; font: inherit; padding: .45rem .8rem; text-decoration: none; }
     .counter { align-self: flex-end; color: #627d98; font-size: .8em; margin-top: auto; }
     @media print { body, .deck { background: #fff; height: auto; overflow: visible; } .slide, .slide.active { display: flex; min-height: 100vh; page-break-after: always; } .controls { display: none; } }
   </style>
@@ -35,24 +35,24 @@
   <main class="deck" aria-label="Financial conversation presentation">
     <section class="slide title active">
       <p class="eyebrow">Financial conversation</p>
-      <h1>Building</h1>
-      <p>Partnered/married, no kids yet or planning</p>
+      <h1>Launching</h1>
+      <p>20s, single or newly partnered</p>
       <p>Use the arrow keys or controls to advance.</p>
     </section>
     <section class="slide">
       <p class="eyebrow">Stage context</p>
       <h2>Start with the life they are building.</h2>
-      <p>Two households are becoming one, often alongside a home purchase or family plans. Excellent means each partner understands the combined financial commitments and savings is beginning to support shared goals.</p>
-      <p class="quote">“Now that your finances are linked, does your coverage actually reflect what your household needs — or is it still what you had when you were single?”</p>
+      <p>This stage is about establishing financial habits while responsibilities and options are still changing quickly. Excellent looks like accessible emergency savings, full use of any employer match, and protection sized to real obligations.</p>
+      <p class="quote">“Most people your age either have zero coverage or way too little — let's see which one you are.”</p>
     </section>
     <section class="slide">
       <p class="eyebrow">Conversation goal</p>
       <h2>Lead with a quick, tangible win.</h2>
-      <p class="quote">A joint protection review timed to a major event such as marriage or a home purchase.</p>
+      <p class="quote">Starting the emergency fund and capturing the full employer match.</p>
     </section>
     <section class="slide">
       <p class="eyebrow">Priority 1</p>
-      <h2>Protection <span class="score yellow">yellow</span></h2>
+      <h2>Protection <span class="score red">red</span></h2>
       <p class="quote">If income stops today (death, disability, illness), does the family survive intact?</p>
       <p><strong>What is at risk:</strong> Loss of income becomes loss of home, school, stability</p>
       <p>Protection addresses the financial consequences of death, disability, illness, and other interruptions to earned income. Strong protection lets a household preserve its day-to-day stability when work cannot continue.</p>
@@ -75,7 +75,7 @@
       <p class="eyebrow">Listen for this</p>
       <h2>Common concern, useful reframe.</h2>
       <div class="grid">
-        <article class="card objection"><h3>“We're fine, we both work.”</h3><p>Dual-income households often understate their risk, because losing either income changes the math, not just one.</p></article>
+        <article class="card objection"><h3>“I don't need life insurance, I don't have kids.”</h3><p>Protection here is about debt, co-signers, or a partner who depends on income — and locking in low rates while young and healthy.</p></article>
       </div>
     </section>
     <section class="slide">
@@ -110,10 +110,10 @@
       <p class="disclaimer">Actual recommendations require a full needs analysis and current licensed product/carrier options — this is a category guide only.</p>
     </section>
   </main>
-  <div class="controls"><button type="button" id="previous" aria-label="Previous slide">←</button><button type="button" id="next" aria-label="Next slide">→</button></div>
+  <div class="controls"><a class="checklist-link" href="checklist.html">Client checklist</a><button type="button" id="previous" aria-label="Previous slide">←</button><button type="button" id="next" aria-label="Next slide">→</button></div>
   <script>
     const slides = [...document.querySelectorAll('.slide')]; let current = 0;
-    function show(index) { current = (index + slides.length) % slides.length; slides.forEach((slide, i) => slide.classList.toggle('active', i === current)); document.title = `${current + 1}/${slides.length} · Building financial conversation`; }
+    function show(index) { current = (index + slides.length) % slides.length; slides.forEach((slide, i) => slide.classList.toggle('active', i === current)); document.title = `${current + 1}/${slides.length} · Launching financial conversation`; }
     document.getElementById('previous').addEventListener('click', () => show(current - 1));
     document.getElementById('next').addEventListener('click', () => show(current + 1));
     document.addEventListener('keydown', event => { if (['ArrowRight', 'PageDown', ' '].includes(event.key)) show(current + 1); if (['ArrowLeft', 'PageUp'].includes(event.key)) show(current - 1); });
