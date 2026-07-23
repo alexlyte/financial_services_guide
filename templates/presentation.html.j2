@@ -3,9 +3,13 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>{{ stage.name }} financial conversation</title>
+  <title>What to think about at every life stage</title>
   <style>
-    :root { --ink: #102a43; --navy: #163d59; --teal: #16827a; --mist: #eaf3f4; --gold: #e5ad32; --red: #c94b4b; --yellow: #b67b00; }
+    :root {
+      --ink: #102a43; --navy: #163d59; --teal: #16827a; --mist: #eaf3f4; --gold: #e5ad32;
+      --protection: #c94b4b; --liquidity: #b67b00; --accumulation: #16827a;
+      --retirement-income: #2f6fb0; --longevity-legacy: #7a4fb5;
+    }
     * { box-sizing: border-box; }
     body { margin: 0; color: var(--ink); background: #0b1f30; font: 20px/1.45 system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; }
     .deck { height: 100vh; overflow: hidden; position: relative; }
@@ -14,81 +18,83 @@
     .title { color: #fff; background: linear-gradient(135deg, var(--navy), var(--teal)); }
     .eyebrow { color: var(--teal); font-size: .8em; font-weight: 800; letter-spacing: .12em; text-transform: uppercase; }
     .title .eyebrow { color: #b8ebe5; }
-    h1 { font-size: clamp(3rem, 8vw, 7rem); line-height: 1; margin: .25rem 0 1rem; max-width: 14ch; }
-    h2 { font-size: clamp(2rem, 5vw, 4.5rem); line-height: 1.08; margin: .25rem 0 1.25rem; max-width: 20ch; }
-    h3 { font-size: 1.25em; margin: 0 0 .4rem; }
+    h1 { font-size: clamp(3rem, 8vw, 7rem); line-height: 1; margin: .25rem 0 1rem; max-width: 18ch; }
+    h2 { font-size: clamp(1.8rem, 4.2vw, 3.6rem); line-height: 1.12; margin: .25rem 0 1.25rem; max-width: 24ch; }
+    h3 { font-size: 1.15em; margin: 0 0 .6rem; }
     p { max-width: 58rem; margin: .25rem 0 1rem; }
     .quote { color: var(--navy); border-left: .35rem solid var(--gold); font-size: clamp(1.35rem, 2.6vw, 2.2rem); font-weight: 650; max-width: 48rem; padding-left: 1.2rem; }
-    .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(15rem, 1fr)); gap: 1rem; max-width: 70rem; }
-    .card { background: var(--mist); border-radius: 1rem; padding: 1.2rem; }
-    .score { display: inline-block; border-radius: 99rem; color: #fff; font-size: .75em; font-weight: 800; letter-spacing: .06em; padding: .25rem .7rem; text-transform: uppercase; }
-    .score.red { background: var(--red); } .score.yellow { background: var(--yellow); }
-    .solution { border-top: .3rem solid var(--teal); } .objection { border-top: .3rem solid var(--gold); }
-    .disclaimer { color: #486581; font-size: .72em; margin-top: 1rem; }
+    .why { color: #334e68; max-width: 48rem; }
+    .actions { background: var(--mist); border-radius: 1rem; max-width: 48rem; padding: 1.3rem 1.6rem; }
+    .actions h3 { color: var(--navy); }
+    .actions ul { margin: 0; padding-left: 1.2rem; }
+    .actions li { margin: 0 0 .5rem; }
+    .actions li:last-child { margin-bottom: 0; }
+    .pillar-tag { border-radius: 99rem; color: #fff; display: inline-block; font-size: .7rem; font-weight: 800; letter-spacing: .06em; margin-bottom: .6rem; padding: .25rem .8rem; text-transform: uppercase; }
+{% for pillar in pillars %}
+    .pillar-tag.{{ pillar.id }} { background: var(--{{ pillar.id }}); }
+{% endfor %}
+    .stage-nav { bottom: 1rem; display: flex; flex-wrap: wrap; gap: .5rem; left: 1.2rem; max-width: 60vw; position: fixed; z-index: 2; }
+    .stage-nav button { background: rgba(255,255,255,.14); border: 1px solid rgba(255,255,255,.4); border-radius: 99rem; color: #fff; cursor: pointer; font: inherit; font-size: .75rem; font-weight: 700; padding: .4rem .8rem; }
+    .stage-nav button.current { background: var(--gold); border-color: var(--gold); color: var(--ink); }
     .controls { bottom: 1rem; color: #fff; display: flex; gap: .8rem; position: fixed; right: 1.2rem; z-index: 2; }
-    button, a.checklist-link { background: rgba(11,31,48,.86); border: 1px solid rgba(255,255,255,.45); border-radius: 99rem; color: #fff; cursor: pointer; font: inherit; padding: .45rem .8rem; text-decoration: none; }
+    .controls button { background: rgba(11,31,48,.86); border: 1px solid rgba(255,255,255,.45); border-radius: 99rem; color: #fff; cursor: pointer; font: inherit; padding: .45rem .8rem; }
     .counter { align-self: flex-end; color: #627d98; font-size: .8em; margin-top: auto; }
-    @media print { body, .deck { background: #fff; height: auto; overflow: visible; } .slide, .slide.active { display: flex; min-height: 100vh; page-break-after: always; } .controls { display: none; } }
+    @media print { body, .deck { background: #fff; height: auto; overflow: visible; } .slide, .slide.active { display: flex; min-height: 100vh; page-break-after: always; } .controls, .stage-nav { display: none; } }
   </style>
 </head>
 <body>
   <main class="deck" aria-label="Financial conversation presentation">
-    <section class="slide title active">
-      <p class="eyebrow">Financial conversation</p>
+    <section class="slide title active" data-stage="intro">
+      <p class="eyebrow">A conversation about your future</p>
+      <h1>What to think about, wherever life has you right now.</h1>
+      <p>A handful of questions worth sitting with — for yourself and your family — at each stage of life. Use the arrow keys or the controls below to move through them, and jump to any stage at any time.</p>
+    </section>
+{% for stage in stages %}
+    <section class="slide" data-stage="{{ stage.id }}">
+      <p class="eyebrow">Life stage</p>
       <h1>{{ stage.name }}</h1>
       <p>{{ stage.description }}</p>
-      <p>Use the arrow keys or controls to advance.</p>
-    </section>
-    <section class="slide">
-      <p class="eyebrow">Stage context</p>
-      <h2>Start with the life they are building.</h2>
-      <p>{{ stage.body }}</p>
       <p class="quote">“{{ stage.opening_line }}”</p>
     </section>
-    <section class="slide">
-      <p class="eyebrow">Conversation goal</p>
-      <h2>Lead with a quick, tangible win.</h2>
-      <p class="quote">{{ stage.quick_win }}</p>
-    </section>
-{% for pillar in weak_pillars %}
-    <section class="slide">
-      <p class="eyebrow">Priority {{ loop.index }}</p>
-      <h2>{{ pillar.name }} <span class="score {{ scores[pillar.id] }}">{{ scores[pillar.id] }}</span></h2>
-      <p class="quote">{{ pillar.self_score_question }}</p>
-      <p><strong>What is at risk:</strong> {{ pillar.failure_mode }}</p>
-      <p>{{ pillar.body }}</p>
-    </section>
+{% for question in questions_by_stage[stage.id] %}
+    <section class="slide" data-stage="{{ stage.id }}">
+      <span class="pillar-tag {{ question.pillar }}">{{ pillar_names[question.pillar] }}</span>
+      <h2>{{ question.prompt }}</h2>
+      <p class="why">{{ question.body }}</p>
+      <div class="actions">
+        <h3>What you can do about it</h3>
+        <ul>
+{% for action in question.actions %}
+          <li>{{ action }}</li>
 {% endfor %}
-{% if objections %}
-    <section class="slide">
-      <p class="eyebrow">Listen for this</p>
-      <h2>Common concern, useful reframe.</h2>
-      <div class="grid">
-{% for objection in objections %}
-        <article class="card objection"><h3>“{{ objection.objection_text }}”</h3><p>{{ objection.body }}</p></article>
-{% endfor %}
+        </ul>
       </div>
     </section>
-{% endif %}
-{% for group in solution_groups %}
-    <section class="slide">
-      <p class="eyebrow">Options to explore</p>
-      <h2>Category-level next steps.</h2>
-      <div class="grid">
-{% for solution in group %}
-        <article class="card solution"><h3>{{ solution.category }}</h3><p>{{ solution.body | replace('Actual recommendations require a full needs analysis and current licensed product/carrier options — this is a category guide only.', '') }}</p></article>
 {% endfor %}
-      </div>
-      <p class="disclaimer">Actual recommendations require a full needs analysis and current licensed product/carrier options — this is a category guide only.</p>
-    </section>
 {% endfor %}
   </main>
-  <div class="controls"><a class="checklist-link" href="checklist.html">Client checklist</a><button type="button" id="previous" aria-label="Previous slide">←</button><button type="button" id="next" aria-label="Next slide">→</button></div>
+  <nav class="stage-nav" aria-label="Jump to a life stage">
+{% for stage in stages %}
+    <button type="button" data-jump="{{ stage.id }}">{{ stage.name }}</button>
+{% endfor %}
+  </nav>
+  <div class="controls"><button type="button" id="previous" aria-label="Previous slide">←</button><button type="button" id="next" aria-label="Next slide">→</button></div>
   <script>
-    const slides = [...document.querySelectorAll('.slide')]; let current = 0;
-    function show(index) { current = (index + slides.length) % slides.length; slides.forEach((slide, i) => slide.classList.toggle('active', i === current)); document.title = `${current + 1}/${slides.length} · {{ stage.name }} financial conversation`; }
+    const slides = [...document.querySelectorAll('.slide')];
+    const stageButtons = [...document.querySelectorAll('.stage-nav button')];
+    let current = 0;
+    function show(index) {
+      current = (index + slides.length) % slides.length;
+      slides.forEach((slide, i) => slide.classList.toggle('active', i === current));
+      const stage = slides[current].dataset.stage;
+      stageButtons.forEach(button => button.classList.toggle('current', button.dataset.jump === stage));
+      document.title = `${current + 1}/${slides.length} · What to think about at every life stage`;
+    }
     document.getElementById('previous').addEventListener('click', () => show(current - 1));
     document.getElementById('next').addEventListener('click', () => show(current + 1));
+    stageButtons.forEach(button => button.addEventListener('click', () => {
+      show(slides.findIndex(slide => slide.dataset.stage === button.dataset.jump));
+    }));
     document.addEventListener('keydown', event => { if (['ArrowRight', 'PageDown', ' '].includes(event.key)) show(current + 1); if (['ArrowLeft', 'PageUp'].includes(event.key)) show(current - 1); });
   </script>
 </body>

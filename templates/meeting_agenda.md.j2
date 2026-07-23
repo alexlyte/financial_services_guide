@@ -19,6 +19,9 @@
 {% for question in checklist_questions %}
 - **{{ question.prompt }}**
   {{ question.body }}
+{% for action in question.actions %}
+  - {{ action }}
+{% endfor %}
 {% else %}
 No stage-specific checklist questions are currently recorded for the weak pillars.
 {% endfor %}
