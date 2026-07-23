@@ -1,4 +1,4 @@
-# WFG financial-services playbook
+# financial-services playbook
 
 This is a small, file-based content system for turning a family's life stage and self-assessment scores into a focused agent meeting brief. Atomic markdown files hold the source content; YAML frontmatter makes them queryable; Jinja2 renders the same source material into different formats over time.
 
