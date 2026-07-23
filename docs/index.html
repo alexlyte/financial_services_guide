@@ -3,9 +3,13 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Launching financial conversation</title>
+  <title>What to think about at every life stage</title>
   <style>
-    :root { --ink: #102a43; --navy: #163d59; --teal: #16827a; --mist: #eaf3f4; --gold: #e5ad32; --red: #c94b4b; --yellow: #b67b00; }
+    :root {
+      --ink: #102a43; --navy: #163d59; --teal: #16827a; --mist: #eaf3f4; --gold: #e5ad32;
+      --protection: #c94b4b; --liquidity: #b67b00; --accumulation: #16827a;
+      --retirement-income: #2f6fb0; --longevity-legacy: #7a4fb5;
+    }
     * { box-sizing: border-box; }
     body { margin: 0; color: var(--ink); background: #0b1f30; font: 20px/1.45 system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; }
     .deck { height: 100vh; overflow: hidden; position: relative; }
@@ -14,108 +18,491 @@
     .title { color: #fff; background: linear-gradient(135deg, var(--navy), var(--teal)); }
     .eyebrow { color: var(--teal); font-size: .8em; font-weight: 800; letter-spacing: .12em; text-transform: uppercase; }
     .title .eyebrow { color: #b8ebe5; }
-    h1 { font-size: clamp(3rem, 8vw, 7rem); line-height: 1; margin: .25rem 0 1rem; max-width: 14ch; }
-    h2 { font-size: clamp(2rem, 5vw, 4.5rem); line-height: 1.08; margin: .25rem 0 1.25rem; max-width: 20ch; }
-    h3 { font-size: 1.25em; margin: 0 0 .4rem; }
+    h1 { font-size: clamp(3rem, 8vw, 7rem); line-height: 1; margin: .25rem 0 1rem; max-width: 18ch; }
+    h2 { font-size: clamp(1.8rem, 4.2vw, 3.6rem); line-height: 1.12; margin: .25rem 0 1.25rem; max-width: 24ch; }
+    h3 { font-size: 1.15em; margin: 0 0 .6rem; }
     p { max-width: 58rem; margin: .25rem 0 1rem; }
     .quote { color: var(--navy); border-left: .35rem solid var(--gold); font-size: clamp(1.35rem, 2.6vw, 2.2rem); font-weight: 650; max-width: 48rem; padding-left: 1.2rem; }
-    .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(15rem, 1fr)); gap: 1rem; max-width: 70rem; }
-    .card { background: var(--mist); border-radius: 1rem; padding: 1.2rem; }
-    .score { display: inline-block; border-radius: 99rem; color: #fff; font-size: .75em; font-weight: 800; letter-spacing: .06em; padding: .25rem .7rem; text-transform: uppercase; }
-    .score.red { background: var(--red); } .score.yellow { background: var(--yellow); }
-    .solution { border-top: .3rem solid var(--teal); } .objection { border-top: .3rem solid var(--gold); }
-    .disclaimer { color: #486581; font-size: .72em; margin-top: 1rem; }
+    .why { color: #334e68; max-width: 48rem; }
+    .actions { background: var(--mist); border-radius: 1rem; max-width: 48rem; padding: 1.3rem 1.6rem; }
+    .actions h3 { color: var(--navy); }
+    .actions ul { margin: 0; padding-left: 1.2rem; }
+    .actions li { margin: 0 0 .5rem; }
+    .actions li:last-child { margin-bottom: 0; }
+    .pillar-tag { border-radius: 99rem; color: #fff; display: inline-block; font-size: .7rem; font-weight: 800; letter-spacing: .06em; margin-bottom: .6rem; padding: .25rem .8rem; text-transform: uppercase; }
+    .pillar-tag.protection { background: var(--protection); }
+    .pillar-tag.liquidity { background: var(--liquidity); }
+    .pillar-tag.accumulation { background: var(--accumulation); }
+    .pillar-tag.retirement-income { background: var(--retirement-income); }
+    .pillar-tag.longevity-legacy { background: var(--longevity-legacy); }
+    .stage-nav { bottom: 1rem; display: flex; flex-wrap: wrap; gap: .5rem; left: 1.2rem; max-width: 60vw; position: fixed; z-index: 2; }
+    .stage-nav button { background: rgba(255,255,255,.14); border: 1px solid rgba(255,255,255,.4); border-radius: 99rem; color: #fff; cursor: pointer; font: inherit; font-size: .75rem; font-weight: 700; padding: .4rem .8rem; }
+    .stage-nav button.current { background: var(--gold); border-color: var(--gold); color: var(--ink); }
     .controls { bottom: 1rem; color: #fff; display: flex; gap: .8rem; position: fixed; right: 1.2rem; z-index: 2; }
-    button, a.checklist-link { background: rgba(11,31,48,.86); border: 1px solid rgba(255,255,255,.45); border-radius: 99rem; color: #fff; cursor: pointer; font: inherit; padding: .45rem .8rem; text-decoration: none; }
+    .controls button { background: rgba(11,31,48,.86); border: 1px solid rgba(255,255,255,.45); border-radius: 99rem; color: #fff; cursor: pointer; font: inherit; padding: .45rem .8rem; }
     .counter { align-self: flex-end; color: #627d98; font-size: .8em; margin-top: auto; }
-    @media print { body, .deck { background: #fff; height: auto; overflow: visible; } .slide, .slide.active { display: flex; min-height: 100vh; page-break-after: always; } .controls { display: none; } }
+    @media print { body, .deck { background: #fff; height: auto; overflow: visible; } .slide, .slide.active { display: flex; min-height: 100vh; page-break-after: always; } .controls, .stage-nav { display: none; } }
   </style>
 </head>
 <body>
   <main class="deck" aria-label="Financial conversation presentation">
-    <section class="slide title active">
-      <p class="eyebrow">Financial conversation</p>
+    <section class="slide title active" data-stage="intro">
+      <p class="eyebrow">A conversation about your future</p>
+      <h1>What to think about, wherever life has you right now.</h1>
+      <p>A handful of questions worth sitting with — for yourself and your family — at each stage of life. Use the arrow keys or the controls below to move through them, and jump to any stage at any time.</p>
+    </section>
+    <section class="slide" data-stage="launching">
+      <p class="eyebrow">Life stage</p>
       <h1>Launching</h1>
       <p>20s, single or newly partnered</p>
-      <p>Use the arrow keys or controls to advance.</p>
-    </section>
-    <section class="slide">
-      <p class="eyebrow">Stage context</p>
-      <h2>Start with the life they are building.</h2>
-      <p>This stage is about establishing financial habits while responsibilities and options are still changing quickly. Excellent looks like accessible emergency savings, full use of any employer match, and protection sized to real obligations.</p>
       <p class="quote">“Most people your age either have zero coverage or way too little — let's see which one you are.”</p>
     </section>
-    <section class="slide">
-      <p class="eyebrow">Conversation goal</p>
-      <h2>Lead with a quick, tangible win.</h2>
-      <p class="quote">Starting the emergency fund and capturing the full employer match.</p>
-    </section>
-    <section class="slide">
-      <p class="eyebrow">Priority 1</p>
-      <h2>Protection <span class="score red">red</span></h2>
-      <p class="quote">If income stops today (death, disability, illness), does the family survive intact?</p>
-      <p><strong>What is at risk:</strong> Loss of income becomes loss of home, school, stability</p>
-      <p>Protection addresses the financial consequences of death, disability, illness, and other interruptions to earned income. Strong protection lets a household preserve its day-to-day stability when work cannot continue.</p>
-    </section>
-    <section class="slide">
-      <p class="eyebrow">Priority 2</p>
-      <h2>Liquidity <span class="score yellow">yellow</span></h2>
-      <p class="quote">Can a $2,000-$10,000 surprise be absorbed without debt or derailing goals?</p>
-      <p><strong>What is at risk:</strong> Short-term emergencies become long-term debt</p>
-      <p>Liquidity is accessible money for unexpected costs and near-term needs. It keeps a surprise expense from becoming high-interest debt or an interruption to longer-term saving.</p>
-    </section>
-    <section class="slide">
-      <p class="eyebrow">Priority 3</p>
-      <h2>Accumulation <span class="score yellow">yellow</span></h2>
-      <p class="quote">Is money being systematically built for known future costs (education, home, major goals)?</p>
-      <p><strong>What is at risk:</strong> Kids' education gets funded by parents' retirement</p>
-      <p>Accumulation is the disciplined building of funds for known future goals. It separates education, housing, and other major costs from retirement money.</p>
-    </section>
-    <section class="slide">
-      <p class="eyebrow">Listen for this</p>
-      <h2>Common concern, useful reframe.</h2>
-      <div class="grid">
-        <article class="card objection"><h3>“I don't need life insurance, I don't have kids.”</h3><p>Protection here is about debt, co-signers, or a partner who depends on income — and locking in low rates while young and healthy.</p></article>
+    <section class="slide" data-stage="launching">
+      <span class="pillar-tag protection">Protection</span>
+      <h2>If you carry student loans, a car loan, or credit card debt and something happened to you, who is left holding it — a co-signer, a parent, no one?</h2>
+      <p class="why">"I don't need life insurance, I have no kids" ignores that debt and co-signers don't disappear. Reframe protection around who inherits the liability, not just who inherits the loss of income.</p>
+      <div class="actions">
+        <h3>What you can do about it</h3>
+        <ul>
+          <li>Confirm exactly which debts have a co-signer and whether they'd be legally responsible if you couldn't pay.</li>
+          <li>Price a small term life policy sized to your outstanding debt, not a full income-replacement amount.</li>
+          <li>Lock in a rate while you're young and healthy — it only gets more expensive later.</li>
+        </ul>
       </div>
     </section>
-    <section class="slide">
-      <p class="eyebrow">Options to explore</p>
-      <h2>Category-level next steps.</h2>
-      <div class="grid">
-        <article class="card solution"><h3>Brokerage/managed accounts</h3><p>Provides a flexible category for non-tax-advantaged goals that do not fit a dedicated education or retirement vehicle. </p></article>
-        <article class="card solution"><h3>Cash value in permanent life</h3><p>May have a secondary liquidity role in an appropriately designed permanent-life strategy; it should not replace a dedicated emergency reserve. </p></article>
-        <article class="card solution"><h3>Disability income insurance</h3><p>Helps address an often-overlooked risk: the loss of ability to earn income, which is more likely during working years than death for many households. </p></article>
-        <article class="card solution"><h3>529/education savings vehicles</h3><p>Creates a dedicated education-funding path so college choices do not automatically draw from retirement savings. </p></article>
+    <section class="slide" data-stage="launching">
+      <span class="pillar-tag protection">Protection</span>
+      <h2>If you were diagnosed with a serious illness tomorrow and couldn't work for six months, could you still pay rent and keep your lifestyle — or would you need help?</h2>
+      <p class="why">Single earners have no second income to fall back on. This is the fastest way to make protection concrete and personal instead of abstract.</p>
+      <div class="actions">
+        <h3>What you can do about it</h3>
+        <ul>
+          <li>Price out an individual disability income policy — it protects the paycheck itself, not just what happens if you die.</li>
+          <li>Ask your employer about short- and long-term disability coverage you may already have, and check the benefit amount.</li>
+          <li>Build toward 3-6 months of expenses in savings so a coverage gap doesn't immediately become a rent problem.</li>
+        </ul>
       </div>
-      <p class="disclaimer">Actual recommendations require a full needs analysis and current licensed product/carrier options — this is a category guide only.</p>
     </section>
-    <section class="slide">
-      <p class="eyebrow">Options to explore</p>
-      <h2>Category-level next steps.</h2>
-      <div class="grid">
-        <article class="card solution"><h3>High-yield/interest-bearing emergency account</h3><p>Separates emergency reserves from daily spending while keeping funds accessible for genuine surprises. </p></article>
-        <article class="card solution"><h3>Roth/Traditional IRA and employer plans</h3><p>Supports tax-advantaged long-term saving; unmatched employer contributions should be flagged as a priority to review. </p></article>
-        <article class="card solution"><h3>Permanent life insurance</h3><p>May be considered after term protection needs are covered when long-duration protection or other policy features fit the broader plan. </p></article>
-        <article class="card solution"><h3>Structured savings habit</h3><p>Uses automatic transfers and sinking funds to make consistent saving a behavior, rather than relying on a particular vehicle. </p></article>
+    <section class="slide" data-stage="launching">
+      <span class="pillar-tag liquidity">Liquidity</span>
+      <h2>If your car broke down and you lost your job in the same month, do you have 3-6 months of expenses saved — or would one bad month land on a credit card?</h2>
+      <p class="why">At this stage liquidity is usually the first real gap: income is growing but savings haven't caught up yet, and there's no partner's income to absorb a shock.</p>
+      <div class="actions">
+        <h3>What you can do about it</h3>
+        <ul>
+          <li>Open a dedicated high-yield savings account so emergency money isn't mixed with everyday spending.</li>
+          <li>Set an automatic transfer each payday, even a small one, so the fund builds without relying on willpower.</li>
+          <li>Target 3-6 months of essential expenses before aggressively investing extra cash.</li>
+        </ul>
       </div>
-      <p class="disclaimer">Actual recommendations require a full needs analysis and current licensed product/carrier options — this is a category guide only.</p>
     </section>
-    <section class="slide">
-      <p class="eyebrow">Options to explore</p>
-      <h2>Category-level next steps.</h2>
-      <div class="grid">
-        <article class="card solution"><h3>Supplemental health / critical illness</h3><p>Can help a household plan for costs and disruption associated with serious illness beyond standard medical coverage. </p></article>
-        <article class="card solution"><h3>Term life insurance</h3><p>Often the default first move for temporary income-replacement needs, commonly evaluated in the range of 10-20x income replacement. </p></article>
+    <section class="slide" data-stage="launching">
+      <span class="pillar-tag accumulation">Accumulation</span>
+      <h2>Are you contributing enough to get the full employer 401(k) match, or is that free money currently left on the table?</h2>
+      <p class="why">This is the lowest-friction accumulation win available: no budget change required, just capturing money that's already been offered.</p>
+      <div class="actions">
+        <h3>What you can do about it</h3>
+        <ul>
+          <li>Check your plan's match formula and confirm your contribution percentage actually captures the full match.</li>
+          <li>If you can't afford the full match yet, set a reminder to raise your contribution with each raise.</li>
+          <li>Confirm your investment elections inside the plan aren't sitting in cash by default.</li>
+        </ul>
       </div>
-      <p class="disclaimer">Actual recommendations require a full needs analysis and current licensed product/carrier options — this is a category guide only.</p>
+    </section>
+    <section class="slide" data-stage="launching">
+      <span class="pillar-tag longevity-legacy">Longevity/Legacy</span>
+      <h2>If something happened to you, would anyone actually know your wishes — do you have a beneficiary named anywhere, or a will?</h2>
+      <p class="why">Most people this age assume they're too young for this to matter. The point isn't the document, it's that decisions get made by default (state law, whoever's listed on an old form) instead of on purpose.</p>
+      <div class="actions">
+        <h3>What you can do about it</h3>
+        <ul>
+          <li>Name a beneficiary on every account that allows it — 401(k), IRA, life insurance, bank accounts.</li>
+          <li>Draft a simple will, even a basic one; it's far better than leaving the decision to state default rules.</li>
+          <li>Revisit both any time your relationship status changes.</li>
+        </ul>
+      </div>
+    </section>
+    <section class="slide" data-stage="building">
+      <p class="eyebrow">Life stage</p>
+      <h1>Building</h1>
+      <p>Partnered/married, no kids yet or planning</p>
+      <p class="quote">“Now that your finances are linked, does your coverage actually reflect what your household needs — or is it still what you had when you were single?”</p>
+    </section>
+    <section class="slide" data-stage="building">
+      <span class="pillar-tag protection">Protection</span>
+      <h2>Have you talked about what happens financially if one of you passes away unexpectedly — not just emotionally, but literally: whose name is on what, and who inherits it?</h2>
+      <p class="why">Couples at this stage have usually discussed the emotional side of loss but rarely the mechanical side: accounts, titling, and who has access to what.</p>
+      <div class="actions">
+        <h3>What you can do about it</h3>
+        <ul>
+          <li>Review how each account is titled and who's named as beneficiary — update anything left over from before the relationship.</li>
+          <li>Get term life insurance sized to replace the income the household actually depends on.</li>
+          <li>Write down where key documents and account logins are so the surviving partner isn't searching blind.</li>
+        </ul>
+      </div>
+    </section>
+    <section class="slide" data-stage="building">
+      <span class="pillar-tag protection">Protection</span>
+      <h2>If one of you couldn't work due to illness or injury, could the household still cover rent or the mortgage on one income alone?</h2>
+      <p class="why">Two incomes often mean two lifestyles built on the assumption both keep coming in. Protection here is testing that assumption before life does.</p>
+      <div class="actions">
+        <h3>What you can do about it</h3>
+        <ul>
+          <li>Add up what one income alone actually covers each month, and where the shortfall would be.</li>
+          <li>Look at disability coverage for both partners, not just the higher earner.</li>
+          <li>Size the emergency fund to the higher of your two monthly budgets, not the lower.</li>
+        </ul>
+      </div>
+    </section>
+    <section class="slide" data-stage="building">
+      <span class="pillar-tag liquidity">Liquidity</span>
+      <h2>Do you have a shared emergency fund, or is each of you quietly assuming the other person has savings to fall back on?</h2>
+      <p class="why">"Both work, so we're covered" is a common but untested assumption. Ask each partner separately what they believe the number is — the gap is often the real finding.</p>
+      <div class="actions">
+        <h3>What you can do about it</h3>
+        <ul>
+          <li>Ask each other, separately, what you think the emergency fund balance is — then compare answers.</li>
+          <li>Open one shared account for emergencies so the responsibility isn't assumed onto either partner alone.</li>
+          <li>Agree on what actually counts as an emergency before you need the money.</li>
+        </ul>
+      </div>
+    </section>
+    <section class="slide" data-stage="building">
+      <span class="pillar-tag accumulation">Accumulation</span>
+      <h2>Are you both saving toward the same goals — a home, kids, retirement — or making decisions independently that could conflict later?</h2>
+      <p class="why">This stage is where separate financial habits either merge into a plan or quietly compound into two different plans that collide down the road.</p>
+      <div class="actions">
+        <h3>What you can do about it</h3>
+        <ul>
+          <li>Sit down together and list your top three goals in priority order, not just individually.</li>
+          <li>Consolidate or coordinate savings so you're not unintentionally working against each other.</li>
+          <li>Revisit the list once a year, since priorities shift as the relationship does.</li>
+        </ul>
+      </div>
+    </section>
+    <section class="slide" data-stage="building">
+      <span class="pillar-tag longevity-legacy">Longevity/Legacy</span>
+      <h2>If you're planning a life together — or a family — have you updated beneficiary designations and a will to reflect that, or are they still set from before you met?</h2>
+      <p class="why">Old beneficiary forms are one of the most common and easiest-to-fix gaps: a five-minute update that prevents money going to the wrong person entirely.</p>
+      <div class="actions">
+        <h3>What you can do about it</h3>
+        <ul>
+          <li>Pull up every account's current beneficiary and confirm it still matches who you'd want today.</li>
+          <li>Update your will (or create one) to reflect your current relationship and any new dependents.</li>
+          <li>Repeat this check after any major life event — marriage, a child, a move.</li>
+        </ul>
+      </div>
+    </section>
+    <section class="slide" data-stage="growing-family">
+      <p class="eyebrow">Life stage</p>
+      <h1>Growing family</h1>
+      <p>Kids at home</p>
+      <p class="quote">“If something happened to you tomorrow, would your family's day-to-day life actually stay the same — same house, same school, same routine?”</p>
+    </section>
+    <section class="slide" data-stage="growing-family">
+      <span class="pillar-tag protection">Protection</span>
+      <h2>Have you named a guardian for your kids in writing, or is that still just a conversation you've had?</h2>
+      <p class="why">Naming a guardian and reviewing beneficiaries is free, fast, and often reveals the family has never actually finished this — a quick win that opens the door to the bigger conversation.</p>
+      <div class="actions">
+        <h3>What you can do about it</h3>
+        <ul>
+          <li>Name a guardian in your will, not just in conversation — an unwritten wish isn't legally binding.</li>
+          <li>Talk to that person directly and confirm they're willing and able.</li>
+          <li>Review beneficiary designations at the same time; it takes minutes.</li>
+        </ul>
+      </div>
+    </section>
+    <section class="slide" data-stage="growing-family">
+      <span class="pillar-tag protection">Protection</span>
+      <h2>If something happened to you tomorrow, would your family's day-to-day life actually stay the same — same house, same school, same routine — or would something have to give?</h2>
+      <p class="why">This is the question that makes protection real for parents: not abstract "coverage," but whether the kids' world stays stable.</p>
+      <div class="actions">
+        <h3>What you can do about it</h3>
+        <ul>
+          <li>Add up the true cost of keeping your kids' routine unchanged — housing, school, activities — for at least a year.</li>
+          <li>Get term life insurance sized to that number, not just a round figure.</li>
+          <li>Review coverage again each time your mortgage, school, or family size changes.</li>
+        </ul>
+      </div>
+    </section>
+    <section class="slide" data-stage="growing-family">
+      <span class="pillar-tag liquidity">Liquidity</span>
+      <h2>If one parent had to stop working for a few months to care for a sick child, how long could the household sustain that on savings alone?</h2>
+      <p class="why">Families at this stage often have some savings, but rarely have sized it against a real caregiving scenario rather than a generic "emergency."</p>
+      <div class="actions">
+        <h3>What you can do about it</h3>
+        <ul>
+          <li>Estimate how many months of expenses caregiving leave would require, using your employer's actual leave policy.</li>
+          <li>Build the emergency fund toward that specific number, not just a generic 3-6 months.</li>
+          <li>Check whether either employer offers paid family leave you haven't factored in.</li>
+        </ul>
+      </div>
+    </section>
+    <section class="slide" data-stage="growing-family">
+      <span class="pillar-tag accumulation">Accumulation</span>
+      <h2>Are you saving for your kids' education in a way that competes with your own retirement savings — or protects it?</h2>
+      <p class="why">Kids can borrow for school; parents can't borrow for retirement. Surfacing this trade-off early prevents an accidental choice made by default years later.</p>
+      <div class="actions">
+        <h3>What you can do about it</h3>
+        <ul>
+          <li>Set up separate accounts for education and retirement so one doesn't quietly fund the other.</li>
+          <li>Automate retirement contributions first, then direct what's left to education savings.</li>
+          <li>Remember that loans exist for college and not for retirement when the two goals compete.</li>
+        </ul>
+      </div>
+    </section>
+    <section class="slide" data-stage="growing-family">
+      <span class="pillar-tag longevity-legacy">Longevity/Legacy</span>
+      <h2>If both parents were gone, is there a plan for who manages the money left behind for your kids — not just who raises them?</h2>
+      <p class="why">Families plan for a guardian far more often than for a financial guardian. The two decisions are separate and both need an answer.</p>
+      <div class="actions">
+        <h3>What you can do about it</h3>
+        <ul>
+          <li>Decide who would manage the money left behind — a trustee or executor — separately from who raises the kids.</li>
+          <li>Put that decision in writing through a will or trust.</li>
+          <li>Make sure the guardian and the money manager both know the plan, even if they're the same person.</li>
+        </ul>
+      </div>
+    </section>
+    <section class="slide" data-stage="peak-earning">
+      <p class="eyebrow">Life stage</p>
+      <h1>Peak earning</h1>
+      <p>Teens, college-age kids</p>
+      <p class="quote">“You're earning the most you ever have — is your savings rate keeping pace, or did it plateau a few years ago?”</p>
+    </section>
+    <section class="slide" data-stage="peak-earning">
+      <span class="pillar-tag protection">Protection</span>
+      <h2>If your income stopped today, could you still fund the college plans you've already promised your kids?</h2>
+      <p class="why">Peak-earning households often carry the biggest promises made against the least protected income — the gap between commitment and coverage is worth naming directly.</p>
+      <div class="actions">
+        <h3>What you can do about it</h3>
+        <ul>
+          <li>Re-run your life insurance coverage against today's actual college cost estimates, not an old number.</li>
+          <li>Confirm disability coverage would still support tuition payments already committed to.</li>
+          <li>Decide now, not in the moment, what gets cut first if income stopped.</li>
+        </ul>
+      </div>
+    </section>
+    <section class="slide" data-stage="peak-earning">
+      <span class="pillar-tag liquidity">Liquidity</span>
+      <h2>Between paying for college and funding your own retirement, which one wins if you had to choose — and have you actually run that math, or just assumed it works out?</h2>
+      <p class="why">This is usually the first time a family has to prioritize, not just save more. Naming the trade-off out loud is more useful than avoiding it.</p>
+      <div class="actions">
+        <h3>What you can do about it</h3>
+        <ul>
+          <li>Run the numbers on both goals side by side before committing to either.</li>
+          <li>Default to protecting retirement contributions first — retirement has no loans to fall back on.</li>
+          <li>Explore aid, scholarships, or state schools before assuming full price is the only option.</li>
+        </ul>
+      </div>
+    </section>
+    <section class="slide" data-stage="peak-earning">
+      <span class="pillar-tag accumulation">Accumulation</span>
+      <h2>Are you still on pace to hit your retirement number, or has the last several years of family spending quietly pushed that timeline out?</h2>
+      <p class="why">Peak-earning years are also peak-spending years. Checking the pace against the original goal — not just against last year — catches drift early enough to correct it.</p>
+      <div class="actions">
+        <h3>What you can do about it</h3>
+        <ul>
+          <li>Compare your current retirement balance to where your original plan expected it to be at this age.</li>
+          <li>Increase your contribution percentage with each raise instead of letting lifestyle spending absorb it.</li>
+          <li>Revisit your target retirement number — it may have changed since you first set it.</li>
+        </ul>
+      </div>
+    </section>
+    <section class="slide" data-stage="peak-earning">
+      <span class="pillar-tag retirement-income">Retirement Income</span>
+      <h2>Do you know, in real numbers, what your household will need per month in retirement — or is it still a guess?</h2>
+      <p class="why">With retirement close enough to plan for but still far enough to adjust, this is the window where a real number replaces a vague feeling.</p>
+      <div class="actions">
+        <h3>What you can do about it</h3>
+        <ul>
+          <li>Estimate your actual monthly expenses in retirement, not just a percentage of current income.</li>
+          <li>Add up expected income sources — Social Security, pensions, withdrawals — against that number.</li>
+          <li>Identify the gap now, while there's still time and income to close it.</li>
+        </ul>
+      </div>
+    </section>
+    <section class="slide" data-stage="peak-earning">
+      <span class="pillar-tag longevity-legacy">Longevity/Legacy</span>
+      <h2>If you became unable to make financial decisions — illness, an accident, cognitive decline — does anyone have the legal authority to step in?</h2>
+      <p class="why">Households at this stage are managing college costs, aging parents, and their own finances at once; a missing power of attorney turns a hard moment into a legal one too.</p>
+      <div class="actions">
+        <h3>What you can do about it</h3>
+        <ul>
+          <li>Set up a durable power of attorney for finances while you're healthy enough to choose who you trust.</li>
+          <li>Add a healthcare directive at the same time — the two decisions usually go together.</li>
+          <li>Tell the person you've named so it isn't a surprise if it's ever needed.</li>
+        </ul>
+      </div>
+    </section>
+    <section class="slide" data-stage="pre-retirement">
+      <p class="eyebrow">Life stage</p>
+      <h1>Pre-retirement / empty nest</h1>
+      <p>5-15 years from retirement</p>
+      <p class="quote">“You've got a number in your retirement account — but do you know the actual monthly paycheck that number produces?”</p>
+    </section>
+    <section class="slide" data-stage="pre-retirement">
+      <span class="pillar-tag protection">Protection</span>
+      <h2>If a major health event hit in the next 10 years, would it derail your retirement date?</h2>
+      <p class="why">Protection at this stage isn't about replacing income for decades anymore — it's about keeping one bad year from undoing a decade of planning right before the finish line.</p>
+      <div class="actions">
+        <h3>What you can do about it</h3>
+        <ul>
+          <li>Check whether your health coverage changes at or before your planned retirement date.</li>
+          <li>Build a buffer specifically for a health event, separate from general retirement savings.</li>
+          <li>Revisit disability and supplemental health coverage while you're still working and eligible.</li>
+        </ul>
+      </div>
+    </section>
+    <section class="slide" data-stage="pre-retirement">
+      <span class="pillar-tag accumulation">Accumulation</span>
+      <h2>Are you still maximizing catch-up contributions while you have earned income to do it with?</h2>
+      <p class="why">The empty-nest years often free up cash flow right when catch-up limits are available — a short window worth using deliberately, not by accident.</p>
+      <div class="actions">
+        <h3>What you can do about it</h3>
+        <ul>
+          <li>Confirm your plan's catch-up contribution limit and whether you're using it.</li>
+          <li>Increase contributions during these years specifically, since the window is limited.</li>
+          <li>Prioritize catch-up savings over other spending while you still have earned income.</li>
+        </ul>
+      </div>
+    </section>
+    <section class="slide" data-stage="pre-retirement">
+      <span class="pillar-tag retirement-income">Retirement Income</span>
+      <h2>If you retired on your current savings today, would your income last as long as you might actually live?</h2>
+      <p class="why">"Enough to retire" and "enough to not run out" are two different questions. This stage is the last real window to close that gap while still earning.</p>
+      <div class="actions">
+        <h3>What you can do about it</h3>
+        <ul>
+          <li>Run your savings against a longer time horizon than you expect, not just average life expectancy.</li>
+          <li>Stress-test the plan against a slower withdrawal rate to see how long it actually lasts.</li>
+          <li>Revisit the plan every couple of years as markets and health change.</li>
+        </ul>
+      </div>
+    </section>
+    <section class="slide" data-stage="pre-retirement">
+      <span class="pillar-tag retirement-income">Retirement Income</span>
+      <h2>Have you mapped out where your income will actually come from month to month in retirement — Social Security, pensions, withdrawals — or is the plan just 'the account will be there'?</h2>
+      <p class="why">A total balance isn't a paycheck. Turning savings into a month-by-month income plan is the work that's easy to defer and expensive to skip.</p>
+      <div class="actions">
+        <h3>What you can do about it</h3>
+        <ul>
+          <li>List every expected income source and the actual month it starts.</li>
+          <li>Map that income against your expected monthly expenses, not your current paycheck.</li>
+          <li>Identify any gap years before Social Security or a pension kicks in.</li>
+        </ul>
+      </div>
+    </section>
+    <section class="slide" data-stage="pre-retirement">
+      <span class="pillar-tag longevity-legacy">Longevity/Legacy</span>
+      <h2>Do you have a long-term care plan, or is the plan 'hope it doesn't happen'?</h2>
+      <p class="why">This is the last stage where long-term care coverage is still readily available and affordable — waiting until retirement often means the option has already narrowed or closed.</p>
+      <div class="actions">
+        <h3>What you can do about it</h3>
+        <ul>
+          <li>Get a real quote for long-term care coverage now, while you're still insurable.</li>
+          <li>Decide as a couple how care would be paid for if only one of you needed it.</li>
+          <li>Revisit the plan before rates or eligibility change with age.</li>
+        </ul>
+      </div>
+    </section>
+    <section class="slide" data-stage="retirement">
+      <p class="eyebrow">Life stage</p>
+      <h1>Retirement / legacy</h1>
+      <p>Living off assets</p>
+      <p class="quote">“Is your income guaranteed to last as long as you do, or does it depend on the market cooperating?”</p>
+    </section>
+    <section class="slide" data-stage="retirement">
+      <span class="pillar-tag protection">Protection</span>
+      <h2>Does your spouse know how to manage the household finances if you're not there to do it?</h2>
+      <p class="why">In many households one partner has handled the finances for decades. Protection here means transferring that knowledge, not just the assets.</p>
+      <div class="actions">
+        <h3>What you can do about it</h3>
+        <ul>
+          <li>Walk your spouse through every account, login, and advisor contact together.</li>
+          <li>Write down the plan in one place, not just in your head.</li>
+          <li>Introduce your spouse to your advisor now, while both of you can ask questions.</li>
+        </ul>
+      </div>
+    </section>
+    <section class="slide" data-stage="retirement">
+      <span class="pillar-tag liquidity">Liquidity</span>
+      <h2>Do you have accessible cash outside of investments, so a market downturn doesn't force you to sell at a bad time?</h2>
+      <p class="why">A cash buffer is what turns a market drop from an emergency into a non-event — it buys time to wait the market out instead of selling into it.</p>
+      <div class="actions">
+        <h3>What you can do about it</h3>
+        <ul>
+          <li>Keep a cash reserve outside your investment accounts sized to a year or more of expenses.</li>
+          <li>Replenish that buffer during up markets instead of waiting until it's empty.</li>
+          <li>Treat the buffer as insurance against selling low, not as idle money to invest.</li>
+        </ul>
+      </div>
+    </section>
+    <section class="slide" data-stage="retirement">
+      <span class="pillar-tag retirement-income">Retirement Income</span>
+      <h2>If markets dropped 20% in your first few years of retirement, do you have a plan for that — or does your whole plan assume steady growth?</h2>
+      <p class="why">Early-retirement downturns do outsized damage because withdrawals compound the loss. A sequence-of-returns plan matters more here than the average return ever will.</p>
+      <div class="actions">
+        <h3>What you can do about it</h3>
+        <ul>
+          <li>Keep 1-2 years of expenses in cash or stable assets so a downturn doesn't force selling investments low.</li>
+          <li>Build flexibility into withdrawals so you can pull back spending in a down year.</li>
+          <li>Plan your withdrawal strategy for down markets specifically, not just up ones.</li>
+        </ul>
+      </div>
+    </section>
+    <section class="slide" data-stage="retirement">
+      <span class="pillar-tag longevity-legacy">Longevity/Legacy</span>
+      <h2>Is your estate plan actually up to date, and does your family know where to find it?</h2>
+      <p class="why">Plans drafted decades ago often no longer reflect current wishes, accounts, or family circumstances — and a plan no one can locate works the same as no plan at all.</p>
+      <div class="actions">
+        <h3>What you can do about it</h3>
+        <ul>
+          <li>Pull out your current will, trust, and beneficiary forms and confirm the names on them are still accurate.</li>
+          <li>Tell your family where the documents are kept, not just that they exist.</li>
+          <li>Update anything drafted before a major life change — a death, divorce, or new grandchild.</li>
+        </ul>
+      </div>
+    </section>
+    <section class="slide" data-stage="retirement">
+      <span class="pillar-tag longevity-legacy">Longevity/Legacy</span>
+      <h2>If you needed long-term care for several years, whose savings pays for it — yours, or what you meant to leave your kids?</h2>
+      <p class="why">Without a plan, long-term care is funded out of whatever's left — quietly converting a legacy into a care bill.</p>
+      <div class="actions">
+        <h3>What you can do about it</h3>
+        <ul>
+          <li>Decide explicitly whether long-term care would be self-funded, insured, or split with family.</li>
+          <li>Put that decision in writing so family isn't guessing during a crisis.</li>
+          <li>Revisit the plan if health, savings, or family circumstances change.</li>
+        </ul>
+      </div>
     </section>
   </main>
-  <div class="controls"><a class="checklist-link" href="checklist.html">Client checklist</a><button type="button" id="previous" aria-label="Previous slide">←</button><button type="button" id="next" aria-label="Next slide">→</button></div>
+  <nav class="stage-nav" aria-label="Jump to a life stage">
+    <button type="button" data-jump="launching">Launching</button>
+    <button type="button" data-jump="building">Building</button>
+    <button type="button" data-jump="growing-family">Growing family</button>
+    <button type="button" data-jump="peak-earning">Peak earning</button>
+    <button type="button" data-jump="pre-retirement">Pre-retirement / empty nest</button>
+    <button type="button" data-jump="retirement">Retirement / legacy</button>
+  </nav>
+  <div class="controls"><button type="button" id="previous" aria-label="Previous slide">←</button><button type="button" id="next" aria-label="Next slide">→</button></div>
   <script>
-    const slides = [...document.querySelectorAll('.slide')]; let current = 0;
-    function show(index) { current = (index + slides.length) % slides.length; slides.forEach((slide, i) => slide.classList.toggle('active', i === current)); document.title = `${current + 1}/${slides.length} · Launching financial conversation`; }
+    const slides = [...document.querySelectorAll('.slide')];
+    const stageButtons = [...document.querySelectorAll('.stage-nav button')];
+    let current = 0;
+    function show(index) {
+      current = (index + slides.length) % slides.length;
+      slides.forEach((slide, i) => slide.classList.toggle('active', i === current));
+      const stage = slides[current].dataset.stage;
+      stageButtons.forEach(button => button.classList.toggle('current', button.dataset.jump === stage));
+      document.title = `${current + 1}/${slides.length} · What to think about at every life stage`;
+    }
     document.getElementById('previous').addEventListener('click', () => show(current - 1));
     document.getElementById('next').addEventListener('click', () => show(current + 1));
+    stageButtons.forEach(button => button.addEventListener('click', () => {
+      show(slides.findIndex(slide => slide.dataset.stage === button.dataset.jump));
+    }));
     document.addEventListener('keydown', event => { if (['ArrowRight', 'PageDown', ' '].includes(event.key)) show(current + 1); if (['ArrowLeft', 'PageUp'].includes(event.key)) show(current - 1); });
   </script>
 </body>

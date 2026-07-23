@@ -41,6 +41,7 @@ class ChecklistQuestion:
     pillar: str
     prompt: str
     body: str
+    actions: list[str]
 
 
 @dataclass
