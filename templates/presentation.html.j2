@@ -9,11 +9,14 @@
       --ink: #102a43; --navy: #163d59; --teal: #16827a; --mist: #eaf3f4; --gold: #e5ad32;
       --protection: #c94b4b; --liquidity: #b67b00; --accumulation: #16827a;
       --retirement-income: #2f6fb0; --longevity-legacy: #7a4fb5;
+      --bar-height: 7.5rem;
     }
+    @media (min-width: 720px) { :root { --bar-height: 3.6rem; } }
     * { box-sizing: border-box; }
-    body { margin: 0; color: var(--ink); background: #0b1f30; font: 20px/1.45 system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; }
-    .deck { height: 100vh; overflow: hidden; position: relative; }
-    .slide { display: none; min-height: 100%; padding: clamp(2rem, 6vw, 6rem); background: #fff; }
+    html { -webkit-text-size-adjust: 100%; }
+    body { margin: 0; color: var(--ink); background: #0b1f30; font: 18px/1.45 system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; }
+    .deck { height: 100vh; height: 100dvh; overflow: hidden; position: relative; }
+    .slide { display: none; height: 100%; overflow-y: auto; -webkit-overflow-scrolling: touch; padding: clamp(1.5rem, 6vw, 6rem); padding-bottom: calc(clamp(1.5rem, 6vw, 6rem) + var(--bar-height)); background: #fff; }
     .slide.active { display: flex; flex-direction: column; justify-content: center; }
     .title { color: #fff; background: linear-gradient(135deg, var(--navy), var(--teal)); }
     .eyebrow { color: var(--teal); font-size: .8em; font-weight: 800; letter-spacing: .12em; text-transform: uppercase; }
@@ -33,13 +36,19 @@
 {% for pillar in pillars %}
     .pillar-tag.{{ pillar.id }} { background: var(--{{ pillar.id }}); }
 {% endfor %}
-    .stage-nav { bottom: 1rem; display: flex; flex-wrap: wrap; gap: .5rem; left: 1.2rem; max-width: 60vw; position: fixed; z-index: 2; }
-    .stage-nav button { background: rgba(255,255,255,.14); border: 1px solid rgba(255,255,255,.4); border-radius: 99rem; color: #fff; cursor: pointer; font: inherit; font-size: .75rem; font-weight: 700; padding: .4rem .8rem; }
+    .bar { align-items: center; background: rgba(11,31,48,.94); bottom: 0; display: flex; flex-wrap: wrap; gap: .5rem; height: var(--bar-height); left: 0; padding: .5rem 1rem calc(.5rem + env(safe-area-inset-bottom)); position: fixed; right: 0; z-index: 2; }
+    .stage-nav { display: flex; flex: 1 1 100%; gap: .5rem; overflow-x: auto; -webkit-overflow-scrolling: touch; scrollbar-width: none; }
+    .stage-nav::-webkit-scrollbar { display: none; }
+    .stage-nav button { background: rgba(255,255,255,.14); border: 1px solid rgba(255,255,255,.4); border-radius: 99rem; color: #fff; cursor: pointer; flex: none; font: inherit; font-size: .75rem; font-weight: 700; padding: .5rem 1rem; white-space: nowrap; }
     .stage-nav button.current { background: var(--gold); border-color: var(--gold); color: var(--ink); }
-    .controls { bottom: 1rem; color: #fff; display: flex; gap: .8rem; position: fixed; right: 1.2rem; z-index: 2; }
-    .controls button { background: rgba(11,31,48,.86); border: 1px solid rgba(255,255,255,.45); border-radius: 99rem; color: #fff; cursor: pointer; font: inherit; padding: .45rem .8rem; }
-    .counter { align-self: flex-end; color: #627d98; font-size: .8em; margin-top: auto; }
-    @media print { body, .deck { background: #fff; height: auto; overflow: visible; } .slide, .slide.active { display: flex; min-height: 100vh; page-break-after: always; } .controls, .stage-nav { display: none; } }
+    .controls { display: flex; flex: 1 1 100%; gap: .5rem; justify-content: center; }
+    .controls button { background: rgba(255,255,255,.16); border: 1px solid rgba(255,255,255,.45); border-radius: 99rem; color: #fff; cursor: pointer; font: inherit; min-height: 2.6rem; min-width: 2.6rem; padding: .5rem .9rem; }
+    @media (min-width: 720px) {
+      .bar { flex-wrap: nowrap; }
+      .stage-nav { flex: 1 1 auto; }
+      .controls { flex: none; justify-content: flex-end; margin-left: auto; }
+    }
+    @media print { body, .deck { background: #fff; height: auto; overflow: visible; } .slide, .slide.active { display: flex; min-height: 100vh; padding-bottom: clamp(1.5rem, 6vw, 6rem); page-break-after: always; } .bar { display: none; } }
   </style>
 </head>
 <body>
@@ -73,12 +82,14 @@
 {% endfor %}
 {% endfor %}
   </main>
-  <nav class="stage-nav" aria-label="Jump to a life stage">
+  <footer class="bar">
+    <nav class="stage-nav" aria-label="Jump to a life stage">
 {% for stage in stages %}
-    <button type="button" data-jump="{{ stage.id }}">{{ stage.name }}</button>
+      <button type="button" data-jump="{{ stage.id }}">{{ stage.name }}</button>
 {% endfor %}
-  </nav>
-  <div class="controls"><button type="button" id="previous" aria-label="Previous slide">←</button><button type="button" id="next" aria-label="Next slide">→</button></div>
+    </nav>
+    <div class="controls"><button type="button" id="previous" aria-label="Previous slide">←</button><button type="button" id="next" aria-label="Next slide">→</button></div>
+  </footer>
   <script>
     const slides = [...document.querySelectorAll('.slide')];
     const stageButtons = [...document.querySelectorAll('.stage-nav button')];
