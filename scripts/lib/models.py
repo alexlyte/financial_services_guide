@@ -21,6 +21,7 @@ class Stage:
     description: str
     likely_weak_pillars: list[str]
     opening_line: str
+    you_statement: str
     quick_win: str
     body: str
 
