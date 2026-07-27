@@ -2,6 +2,7 @@
 id: pre-retirement-health-event
 stage: pre-retirement
 pillar: protection
+topic: "A health event before retiring"
 prompt: "If a major health event hit in the next 10 years, would it derail your retirement date?"
 actions:
   - "Check whether your health coverage changes at or before your planned retirement date."

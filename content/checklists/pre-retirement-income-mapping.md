@@ -2,6 +2,7 @@
 id: pre-retirement-income-mapping
 stage: pre-retirement
 pillar: retirement-income
+topic: "Mapping retirement income"
 prompt: "Have you mapped out where your income will actually come from month to month in retirement — Social Security, pensions, withdrawals — or is the plan just 'the account will be there'?"
 actions:
   - "List every expected income source and the actual month it starts."

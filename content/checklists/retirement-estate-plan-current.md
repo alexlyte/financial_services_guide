@@ -2,6 +2,7 @@
 id: retirement-estate-plan-current
 stage: retirement
 pillar: longevity-legacy
+topic: "Keeping your estate plan current"
 prompt: "Is your estate plan actually up to date, and does your family know where to find it?"
 actions:
   - "Pull out your current will, trust, and beneficiary forms and confirm the names on them are still accurate."

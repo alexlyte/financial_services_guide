@@ -2,6 +2,7 @@
 id: peak-earning-power-of-attorney
 stage: peak-earning
 pillar: longevity-legacy
+topic: "Power of attorney"
 prompt: "If you became unable to make financial decisions — illness, an accident, cognitive decline — does anyone have the legal authority to step in?"
 actions:
   - "Set up a durable power of attorney for finances while you're healthy enough to choose who you trust."

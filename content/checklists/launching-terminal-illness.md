@@ -2,6 +2,7 @@
 id: launching-terminal-illness
 stage: launching
 pillar: protection
+topic: "Income loss from illness"
 prompt: "If you were diagnosed with a serious illness tomorrow and couldn't work for six months, could you still pay rent and keep your lifestyle — or would you need help?"
 actions:
   - "Price out an individual disability income policy — it protects the paycheck itself, not just what happens if you die."

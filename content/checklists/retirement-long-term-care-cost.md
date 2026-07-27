@@ -2,6 +2,7 @@
 id: retirement-long-term-care-cost
 stage: retirement
 pillar: longevity-legacy
+topic: "Paying for long-term care"
 prompt: "If you needed long-term care for several years, whose savings pays for it — yours, or what you meant to leave your kids?"
 actions:
   - "Decide explicitly whether long-term care would be self-funded, insured, or split with family."

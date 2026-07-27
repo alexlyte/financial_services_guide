@@ -2,6 +2,7 @@
 id: peak-earning-income-loss-college
 stage: peak-earning
 pillar: protection
+topic: "Income loss and college costs"
 prompt: "If your income stopped today, could you still fund the college plans you've already promised your kids?"
 actions:
   - "Re-run your life insurance coverage against today's actual college cost estimates, not an old number."

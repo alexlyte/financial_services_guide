@@ -2,6 +2,7 @@
 id: growing-family-income-loss
 stage: growing-family
 pillar: protection
+topic: "Income loss and family stability"
 prompt: "If something happened to you tomorrow, would your family's day-to-day life actually stay the same — same house, same school, same routine — or would something have to give?"
 actions:
   - "Add up the true cost of keeping your kids' routine unchanged — housing, school, activities — for at least a year."

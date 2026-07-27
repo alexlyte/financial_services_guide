@@ -38,6 +38,11 @@
     .pillar-tag.accumulation { background: var(--accumulation); }
     .pillar-tag.retirement-income { background: var(--retirement-income); }
     .pillar-tag.longevity-legacy { background: var(--longevity-legacy); }
+    .toc-label { color: var(--teal); font-size: .8em; font-weight: 800; letter-spacing: .1em; margin: 1.75rem 0 .5rem; text-transform: uppercase; }
+    .toc { display: grid; gap: .6rem; list-style: none; margin: 0; max-width: 40rem; padding: 0; }
+    .toc button { align-items: center; background: var(--mist); border: none; border-radius: .8rem; color: var(--ink); cursor: pointer; display: flex; font: inherit; font-size: .95rem; font-weight: 650; gap: .8rem; padding: .8rem 1rem; text-align: left; width: 100%; }
+    .toc button:hover, .toc button:focus-visible { background: #dcebed; }
+    .toc-index { align-items: center; background: var(--navy); border-radius: 99rem; color: #fff; display: flex; flex: none; font-size: .75rem; font-weight: 800; height: 1.7rem; justify-content: center; width: 1.7rem; }
     .bar { align-items: center; background: #08131f; border-top: 1px solid rgba(255,255,255,.1); bottom: 0; display: flex; flex-wrap: wrap; gap: .5rem; height: var(--bar-height); left: 0; padding: .5rem 1rem calc(.5rem + env(safe-area-inset-bottom)); position: fixed; right: 0; z-index: 2; }
     .stage-nav { display: flex; flex: 1 1 100%; gap: .5rem; overflow-x: auto; -webkit-overflow-scrolling: touch; scrollbar-width: none; }
     .stage-nav::-webkit-scrollbar { display: none; }
@@ -64,8 +69,18 @@
       <p class="eyebrow">Life stage</p>
       <h1>Launching</h1>
       <p class="quote">You're at the early stages of your career, haven't formed a family yet, and may not own a home of your own.</p>
+      <p class="toc-label">What we'll cover</p>
+      <ol class="toc">
+        <li><button type="button" data-jump-question="launching-debt-without-dependents"><span class="toc-index">1</span>Debt and co-signers</button></li>
+        <li><button type="button" data-jump-question="launching-medical-costs-job-loss"><span class="toc-index">2</span>Medical costs and job loss</button></li>
+        <li><button type="button" data-jump-question="launching-terminal-illness"><span class="toc-index">3</span>Income loss from illness</button></li>
+        <li><button type="button" data-jump-question="launching-emergency-fund-growth-rate"><span class="toc-index">4</span>Emergency fund growth rate</button></li>
+        <li><button type="button" data-jump-question="launching-emergency-fund"><span class="toc-index">5</span>Emergency fund</button></li>
+        <li><button type="button" data-jump-question="launching-employer-match"><span class="toc-index">6</span>Employer 401(k) match</button></li>
+        <li><button type="button" data-jump-question="launching-no-will"><span class="toc-index">7</span>Beneficiaries and a will</button></li>
+      </ol>
     </section>
-    <section class="slide" data-stage="launching">
+    <section class="slide" data-stage="launching" data-slide-id="launching-debt-without-dependents">
       <span class="pillar-tag protection">Protection</span>
       <h2>If you carry student loans, a car loan, or credit card debt and something happened to you, who is left holding it — a co-signer, a parent, no one?</h2>
       <p class="why">"I don't need life insurance, I have no kids" ignores that debt and co-signers don't disappear. Reframe protection around who inherits the liability, not just who inherits the loss of income.</p>
@@ -78,7 +93,7 @@
         </ul>
       </div>
     </section>
-    <section class="slide" data-stage="launching">
+    <section class="slide" data-stage="launching" data-slide-id="launching-medical-costs-job-loss">
       <span class="pillar-tag protection">Protection</span>
       <h2>If you were diagnosed with a terminal illness, how would you pay for treatment and everyday expenses — especially if it also cost you your job?</h2>
       <p class="why">Medical costs and lost income often hit at the same time. Health insurance may cover treatment, but few people plan for the paycheck gap layered on top of it.</p>
@@ -91,7 +106,7 @@
         </ul>
       </div>
     </section>
-    <section class="slide" data-stage="launching">
+    <section class="slide" data-stage="launching" data-slide-id="launching-terminal-illness">
       <span class="pillar-tag protection">Protection</span>
       <h2>If you were diagnosed with a serious illness tomorrow and couldn't work for six months, could you still pay rent and keep your lifestyle — or would you need help?</h2>
       <p class="why">Single earners have no second income to fall back on. This is the fastest way to make protection concrete and personal instead of abstract.</p>
@@ -104,7 +119,7 @@
         </ul>
       </div>
     </section>
-    <section class="slide" data-stage="launching">
+    <section class="slide" data-stage="launching" data-slide-id="launching-emergency-fund-growth-rate">
       <span class="pillar-tag liquidity">Liquidity</span>
       <h2>What growth rate is your emergency fund actually earning — is it keeping pace with inflation, or just sitting there losing value?</h2>
       <p class="why">An emergency fund still has to be liquid first, but parking it in an account that pays next to nothing quietly loses purchasing power every year it sits there.</p>
@@ -117,7 +132,7 @@
         </ul>
       </div>
     </section>
-    <section class="slide" data-stage="launching">
+    <section class="slide" data-stage="launching" data-slide-id="launching-emergency-fund">
       <span class="pillar-tag liquidity">Liquidity</span>
       <h2>If your car broke down and you lost your job in the same month, do you have 3-6 months of expenses saved — or would one bad month land on a credit card?</h2>
       <p class="why">At this stage liquidity is usually the first real gap: income is growing but savings haven't caught up yet, and there's no partner's income to absorb a shock.</p>
@@ -130,7 +145,7 @@
         </ul>
       </div>
     </section>
-    <section class="slide" data-stage="launching">
+    <section class="slide" data-stage="launching" data-slide-id="launching-employer-match">
       <span class="pillar-tag accumulation">Accumulation</span>
       <h2>Are you contributing enough to get the full employer 401(k) match, or is that free money currently left on the table?</h2>
       <p class="why">This is the lowest-friction accumulation win available: no budget change required, just capturing money that's already been offered.</p>
@@ -143,7 +158,7 @@
         </ul>
       </div>
     </section>
-    <section class="slide" data-stage="launching">
+    <section class="slide" data-stage="launching" data-slide-id="launching-no-will">
       <span class="pillar-tag longevity-legacy">Longevity/Legacy</span>
       <h2>If something happened to you, would anyone actually know your wishes — do you have a beneficiary named anywhere, or a will?</h2>
       <p class="why">Most people this age assume they're too young for this to matter. The point isn't the document, it's that decisions get made by default (state law, whoever's listed on an old form) instead of on purpose.</p>
@@ -160,8 +175,16 @@
       <p class="eyebrow">Life stage</p>
       <h1>Building</h1>
       <p class="quote">You've paired your life with someone else's — sharing a home, a budget, or plans for a family — even if kids aren't part of the picture yet.</p>
+      <p class="toc-label">What we'll cover</p>
+      <ol class="toc">
+        <li><button type="button" data-jump-question="building-death-of-a-partner"><span class="toc-index">1</span>If a partner passes away</button></li>
+        <li><button type="button" data-jump-question="building-single-income-shock"><span class="toc-index">2</span>Surviving on one income</button></li>
+        <li><button type="button" data-jump-question="building-shared-emergency-fund"><span class="toc-index">3</span>Shared emergency fund</button></li>
+        <li><button type="button" data-jump-question="building-shared-goals"><span class="toc-index">4</span>Aligning shared goals</button></li>
+        <li><button type="button" data-jump-question="building-beneficiaries-update"><span class="toc-index">5</span>Updating beneficiaries</button></li>
+      </ol>
     </section>
-    <section class="slide" data-stage="building">
+    <section class="slide" data-stage="building" data-slide-id="building-death-of-a-partner">
       <span class="pillar-tag protection">Protection</span>
       <h2>Have you talked about what happens financially if one of you passes away unexpectedly — not just emotionally, but literally: whose name is on what, and who inherits it?</h2>
       <p class="why">Couples at this stage have usually discussed the emotional side of loss but rarely the mechanical side: accounts, titling, and who has access to what.</p>
@@ -174,7 +197,7 @@
         </ul>
       </div>
     </section>
-    <section class="slide" data-stage="building">
+    <section class="slide" data-stage="building" data-slide-id="building-single-income-shock">
       <span class="pillar-tag protection">Protection</span>
       <h2>If one of you couldn't work due to illness or injury, could the household still cover rent or the mortgage on one income alone?</h2>
       <p class="why">Two incomes often mean two lifestyles built on the assumption both keep coming in. Protection here is testing that assumption before life does.</p>
@@ -187,7 +210,7 @@
         </ul>
       </div>
     </section>
-    <section class="slide" data-stage="building">
+    <section class="slide" data-stage="building" data-slide-id="building-shared-emergency-fund">
       <span class="pillar-tag liquidity">Liquidity</span>
       <h2>Do you have a shared emergency fund, or is each of you quietly assuming the other person has savings to fall back on?</h2>
       <p class="why">"Both work, so we're covered" is a common but untested assumption. Ask each partner separately what they believe the number is — the gap is often the real finding.</p>
@@ -200,7 +223,7 @@
         </ul>
       </div>
     </section>
-    <section class="slide" data-stage="building">
+    <section class="slide" data-stage="building" data-slide-id="building-shared-goals">
       <span class="pillar-tag accumulation">Accumulation</span>
       <h2>Are you both saving toward the same goals — a home, kids, retirement — or making decisions independently that could conflict later?</h2>
       <p class="why">This stage is where separate financial habits either merge into a plan or quietly compound into two different plans that collide down the road.</p>
@@ -213,7 +236,7 @@
         </ul>
       </div>
     </section>
-    <section class="slide" data-stage="building">
+    <section class="slide" data-stage="building" data-slide-id="building-beneficiaries-update">
       <span class="pillar-tag longevity-legacy">Longevity/Legacy</span>
       <h2>If you're planning a life together — or a family — have you updated beneficiary designations and a will to reflect that, or are they still set from before you met?</h2>
       <p class="why">Old beneficiary forms are one of the most common and easiest-to-fix gaps: a five-minute update that prevents money going to the wrong person entirely.</p>
@@ -230,8 +253,16 @@
       <p class="eyebrow">Life stage</p>
       <h1>Growing family</h1>
       <p class="quote">You're raising kids at home, juggling school, activities, and a career, with less time than ever to think about money.</p>
+      <p class="toc-label">What we'll cover</p>
+      <ol class="toc">
+        <li><button type="button" data-jump-question="growing-family-guardian"><span class="toc-index">1</span>Naming a guardian</button></li>
+        <li><button type="button" data-jump-question="growing-family-income-loss"><span class="toc-index">2</span>Income loss and family stability</button></li>
+        <li><button type="button" data-jump-question="growing-family-caregiving-leave"><span class="toc-index">3</span>Caregiving leave</button></li>
+        <li><button type="button" data-jump-question="growing-family-education-vs-retirement"><span class="toc-index">4</span>Education vs. retirement savings</button></li>
+        <li><button type="button" data-jump-question="growing-family-money-manager"><span class="toc-index">5</span>Managing money left to kids</button></li>
+      </ol>
     </section>
-    <section class="slide" data-stage="growing-family">
+    <section class="slide" data-stage="growing-family" data-slide-id="growing-family-guardian">
       <span class="pillar-tag protection">Protection</span>
       <h2>Have you named a guardian for your kids in writing, or is that still just a conversation you've had?</h2>
       <p class="why">Naming a guardian and reviewing beneficiaries is free, fast, and often reveals the family has never actually finished this — a quick win that opens the door to the bigger conversation.</p>
@@ -244,7 +275,7 @@
         </ul>
       </div>
     </section>
-    <section class="slide" data-stage="growing-family">
+    <section class="slide" data-stage="growing-family" data-slide-id="growing-family-income-loss">
       <span class="pillar-tag protection">Protection</span>
       <h2>If something happened to you tomorrow, would your family's day-to-day life actually stay the same — same house, same school, same routine — or would something have to give?</h2>
       <p class="why">This is the question that makes protection real for parents: not abstract "coverage," but whether the kids' world stays stable.</p>
@@ -257,7 +288,7 @@
         </ul>
       </div>
     </section>
-    <section class="slide" data-stage="growing-family">
+    <section class="slide" data-stage="growing-family" data-slide-id="growing-family-caregiving-leave">
       <span class="pillar-tag liquidity">Liquidity</span>
       <h2>If one parent had to stop working for a few months to care for a sick child, how long could the household sustain that on savings alone?</h2>
       <p class="why">Families at this stage often have some savings, but rarely have sized it against a real caregiving scenario rather than a generic "emergency."</p>
@@ -270,7 +301,7 @@
         </ul>
       </div>
     </section>
-    <section class="slide" data-stage="growing-family">
+    <section class="slide" data-stage="growing-family" data-slide-id="growing-family-education-vs-retirement">
       <span class="pillar-tag accumulation">Accumulation</span>
       <h2>Are you saving for your kids' education in a way that competes with your own retirement savings — or protects it?</h2>
       <p class="why">Kids can borrow for school; parents can't borrow for retirement. Surfacing this trade-off early prevents an accidental choice made by default years later.</p>
@@ -283,7 +314,7 @@
         </ul>
       </div>
     </section>
-    <section class="slide" data-stage="growing-family">
+    <section class="slide" data-stage="growing-family" data-slide-id="growing-family-money-manager">
       <span class="pillar-tag longevity-legacy">Longevity/Legacy</span>
       <h2>If both parents were gone, is there a plan for who manages the money left behind for your kids — not just who raises them?</h2>
       <p class="why">Families plan for a guardian far more often than for a financial guardian. The two decisions are separate and both need an answer.</p>
@@ -300,8 +331,16 @@
       <p class="eyebrow">Life stage</p>
       <h1>Peak earning</h1>
       <p class="quote">You're earning more than you ever have, with teenagers or college-age kids at home, and retirement finally starting to feel real.</p>
+      <p class="toc-label">What we'll cover</p>
+      <ol class="toc">
+        <li><button type="button" data-jump-question="peak-earning-income-loss-college"><span class="toc-index">1</span>Income loss and college costs</button></li>
+        <li><button type="button" data-jump-question="peak-earning-college-vs-retirement"><span class="toc-index">2</span>College vs. retirement</button></li>
+        <li><button type="button" data-jump-question="peak-earning-retirement-pace"><span class="toc-index">3</span>Retirement savings pace</button></li>
+        <li><button type="button" data-jump-question="peak-earning-income-target"><span class="toc-index">4</span>Your retirement income number</button></li>
+        <li><button type="button" data-jump-question="peak-earning-power-of-attorney"><span class="toc-index">5</span>Power of attorney</button></li>
+      </ol>
     </section>
-    <section class="slide" data-stage="peak-earning">
+    <section class="slide" data-stage="peak-earning" data-slide-id="peak-earning-income-loss-college">
       <span class="pillar-tag protection">Protection</span>
       <h2>If your income stopped today, could you still fund the college plans you've already promised your kids?</h2>
       <p class="why">Peak-earning households often carry the biggest promises made against the least protected income — the gap between commitment and coverage is worth naming directly.</p>
@@ -314,7 +353,7 @@
         </ul>
       </div>
     </section>
-    <section class="slide" data-stage="peak-earning">
+    <section class="slide" data-stage="peak-earning" data-slide-id="peak-earning-college-vs-retirement">
       <span class="pillar-tag liquidity">Liquidity</span>
       <h2>Between paying for college and funding your own retirement, which one wins if you had to choose — and have you actually run that math, or just assumed it works out?</h2>
       <p class="why">This is usually the first time a family has to prioritize, not just save more. Naming the trade-off out loud is more useful than avoiding it.</p>
@@ -327,7 +366,7 @@
         </ul>
       </div>
     </section>
-    <section class="slide" data-stage="peak-earning">
+    <section class="slide" data-stage="peak-earning" data-slide-id="peak-earning-retirement-pace">
       <span class="pillar-tag accumulation">Accumulation</span>
       <h2>Are you still on pace to hit your retirement number, or has the last several years of family spending quietly pushed that timeline out?</h2>
       <p class="why">Peak-earning years are also peak-spending years. Checking the pace against the original goal — not just against last year — catches drift early enough to correct it.</p>
@@ -340,7 +379,7 @@
         </ul>
       </div>
     </section>
-    <section class="slide" data-stage="peak-earning">
+    <section class="slide" data-stage="peak-earning" data-slide-id="peak-earning-income-target">
       <span class="pillar-tag retirement-income">Retirement Income</span>
       <h2>Do you know, in real numbers, what your household will need per month in retirement — or is it still a guess?</h2>
       <p class="why">With retirement close enough to plan for but still far enough to adjust, this is the window where a real number replaces a vague feeling.</p>
@@ -353,7 +392,7 @@
         </ul>
       </div>
     </section>
-    <section class="slide" data-stage="peak-earning">
+    <section class="slide" data-stage="peak-earning" data-slide-id="peak-earning-power-of-attorney">
       <span class="pillar-tag longevity-legacy">Longevity/Legacy</span>
       <h2>If you became unable to make financial decisions — illness, an accident, cognitive decline — does anyone have the legal authority to step in?</h2>
       <p class="why">Households at this stage are managing college costs, aging parents, and their own finances at once; a missing power of attorney turns a hard moment into a legal one too.</p>
@@ -370,8 +409,16 @@
       <p class="eyebrow">Life stage</p>
       <h1>Pre-retirement / empty nest</h1>
       <p class="quote">The kids are grown and the house is quieter now — retirement is close enough to plan for, but still far enough that you can adjust course.</p>
+      <p class="toc-label">What we'll cover</p>
+      <ol class="toc">
+        <li><button type="button" data-jump-question="pre-retirement-health-event"><span class="toc-index">1</span>A health event before retiring</button></li>
+        <li><button type="button" data-jump-question="pre-retirement-catch-up"><span class="toc-index">2</span>Catch-up contributions</button></li>
+        <li><button type="button" data-jump-question="pre-retirement-income-longevity"><span class="toc-index">3</span>Income lasting your lifetime</button></li>
+        <li><button type="button" data-jump-question="pre-retirement-income-mapping"><span class="toc-index">4</span>Mapping retirement income</button></li>
+        <li><button type="button" data-jump-question="pre-retirement-long-term-care"><span class="toc-index">5</span>Long-term care plan</button></li>
+      </ol>
     </section>
-    <section class="slide" data-stage="pre-retirement">
+    <section class="slide" data-stage="pre-retirement" data-slide-id="pre-retirement-health-event">
       <span class="pillar-tag protection">Protection</span>
       <h2>If a major health event hit in the next 10 years, would it derail your retirement date?</h2>
       <p class="why">Protection at this stage isn't about replacing income for decades anymore — it's about keeping one bad year from undoing a decade of planning right before the finish line.</p>
@@ -384,7 +431,7 @@
         </ul>
       </div>
     </section>
-    <section class="slide" data-stage="pre-retirement">
+    <section class="slide" data-stage="pre-retirement" data-slide-id="pre-retirement-catch-up">
       <span class="pillar-tag accumulation">Accumulation</span>
       <h2>Are you still maximizing catch-up contributions while you have earned income to do it with?</h2>
       <p class="why">The empty-nest years often free up cash flow right when catch-up limits are available — a short window worth using deliberately, not by accident.</p>
@@ -397,7 +444,7 @@
         </ul>
       </div>
     </section>
-    <section class="slide" data-stage="pre-retirement">
+    <section class="slide" data-stage="pre-retirement" data-slide-id="pre-retirement-income-longevity">
       <span class="pillar-tag retirement-income">Retirement Income</span>
       <h2>If you retired on your current savings today, would your income last as long as you might actually live?</h2>
       <p class="why">"Enough to retire" and "enough to not run out" are two different questions. This stage is the last real window to close that gap while still earning.</p>
@@ -410,7 +457,7 @@
         </ul>
       </div>
     </section>
-    <section class="slide" data-stage="pre-retirement">
+    <section class="slide" data-stage="pre-retirement" data-slide-id="pre-retirement-income-mapping">
       <span class="pillar-tag retirement-income">Retirement Income</span>
       <h2>Have you mapped out where your income will actually come from month to month in retirement — Social Security, pensions, withdrawals — or is the plan just 'the account will be there'?</h2>
       <p class="why">A total balance isn't a paycheck. Turning savings into a month-by-month income plan is the work that's easy to defer and expensive to skip.</p>
@@ -423,7 +470,7 @@
         </ul>
       </div>
     </section>
-    <section class="slide" data-stage="pre-retirement">
+    <section class="slide" data-stage="pre-retirement" data-slide-id="pre-retirement-long-term-care">
       <span class="pillar-tag longevity-legacy">Longevity/Legacy</span>
       <h2>Do you have a long-term care plan, or is the plan 'hope it doesn't happen'?</h2>
       <p class="why">This is the last stage where long-term care coverage is still readily available and affordable — waiting until retirement often means the option has already narrowed or closed.</p>
@@ -440,8 +487,16 @@
       <p class="eyebrow">Life stage</p>
       <h1>Retirement / legacy</h1>
       <p class="quote">You're living off what you've built, drawing on savings and investments instead of a paycheck, and thinking about what you'll leave behind.</p>
+      <p class="toc-label">What we'll cover</p>
+      <ol class="toc">
+        <li><button type="button" data-jump-question="retirement-spouse-readiness"><span class="toc-index">1</span>Spouse's financial readiness</button></li>
+        <li><button type="button" data-jump-question="retirement-cash-buffer"><span class="toc-index">2</span>Cash buffer</button></li>
+        <li><button type="button" data-jump-question="retirement-market-downturn"><span class="toc-index">3</span>A market downturn early on</button></li>
+        <li><button type="button" data-jump-question="retirement-estate-plan-current"><span class="toc-index">4</span>Keeping your estate plan current</button></li>
+        <li><button type="button" data-jump-question="retirement-long-term-care-cost"><span class="toc-index">5</span>Paying for long-term care</button></li>
+      </ol>
     </section>
-    <section class="slide" data-stage="retirement">
+    <section class="slide" data-stage="retirement" data-slide-id="retirement-spouse-readiness">
       <span class="pillar-tag protection">Protection</span>
       <h2>Does your spouse know how to manage the household finances if you're not there to do it?</h2>
       <p class="why">In many households one partner has handled the finances for decades. Protection here means transferring that knowledge, not just the assets.</p>
@@ -454,7 +509,7 @@
         </ul>
       </div>
     </section>
-    <section class="slide" data-stage="retirement">
+    <section class="slide" data-stage="retirement" data-slide-id="retirement-cash-buffer">
       <span class="pillar-tag liquidity">Liquidity</span>
       <h2>Do you have accessible cash outside of investments, so a market downturn doesn't force you to sell at a bad time?</h2>
       <p class="why">A cash buffer is what turns a market drop from an emergency into a non-event — it buys time to wait the market out instead of selling into it.</p>
@@ -467,7 +522,7 @@
         </ul>
       </div>
     </section>
-    <section class="slide" data-stage="retirement">
+    <section class="slide" data-stage="retirement" data-slide-id="retirement-market-downturn">
       <span class="pillar-tag retirement-income">Retirement Income</span>
       <h2>If markets dropped 20% in your first few years of retirement, do you have a plan for that — or does your whole plan assume steady growth?</h2>
       <p class="why">Early-retirement downturns do outsized damage because withdrawals compound the loss. A sequence-of-returns plan matters more here than the average return ever will.</p>
@@ -480,7 +535,7 @@
         </ul>
       </div>
     </section>
-    <section class="slide" data-stage="retirement">
+    <section class="slide" data-stage="retirement" data-slide-id="retirement-estate-plan-current">
       <span class="pillar-tag longevity-legacy">Longevity/Legacy</span>
       <h2>Is your estate plan actually up to date, and does your family know where to find it?</h2>
       <p class="why">Plans drafted decades ago often no longer reflect current wishes, accounts, or family circumstances — and a plan no one can locate works the same as no plan at all.</p>
@@ -493,7 +548,7 @@
         </ul>
       </div>
     </section>
-    <section class="slide" data-stage="retirement">
+    <section class="slide" data-stage="retirement" data-slide-id="retirement-long-term-care-cost">
       <span class="pillar-tag longevity-legacy">Longevity/Legacy</span>
       <h2>If you needed long-term care for several years, whose savings pays for it — yours, or what you meant to leave your kids?</h2>
       <p class="why">Without a plan, long-term care is funded out of whatever's left — quietly converting a legacy into a care bill.</p>
@@ -533,6 +588,9 @@
     document.getElementById('next').addEventListener('click', () => show(current + 1));
     stageButtons.forEach(button => button.addEventListener('click', () => {
       show(slides.findIndex(slide => slide.dataset.stage === button.dataset.jump));
+    }));
+    document.querySelectorAll('.toc button').forEach(button => button.addEventListener('click', () => {
+      show(slides.findIndex(slide => slide.dataset.slideId === button.dataset.jumpQuestion));
     }));
     document.addEventListener('keydown', event => { if (['ArrowRight', 'PageDown', ' '].includes(event.key)) show(current + 1); if (['ArrowLeft', 'PageUp'].includes(event.key)) show(current - 1); });
   </script>

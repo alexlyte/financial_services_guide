@@ -2,6 +2,7 @@
 id: retirement-cash-buffer
 stage: retirement
 pillar: liquidity
+topic: "Cash buffer"
 prompt: "Do you have accessible cash outside of investments, so a market downturn doesn't force you to sell at a bad time?"
 actions:
   - "Keep a cash reserve outside your investment accounts sized to a year or more of expenses."

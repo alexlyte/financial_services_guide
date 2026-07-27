@@ -2,6 +2,7 @@
 id: launching-debt-without-dependents
 stage: launching
 pillar: protection
+topic: "Debt and co-signers"
 prompt: "If you carry student loans, a car loan, or credit card debt and something happened to you, who is left holding it — a co-signer, a parent, no one?"
 actions:
   - "Confirm exactly which debts have a co-signer and whether they'd be legally responsible if you couldn't pay."
