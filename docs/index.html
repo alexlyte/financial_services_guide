@@ -9,11 +9,14 @@
       --ink: #102a43; --navy: #163d59; --teal: #16827a; --mist: #eaf3f4; --gold: #e5ad32;
       --protection: #c94b4b; --liquidity: #b67b00; --accumulation: #16827a;
       --retirement-income: #2f6fb0; --longevity-legacy: #7a4fb5;
+      --bar-height: 7.5rem;
     }
+    @media (min-width: 720px) { :root { --bar-height: 3.6rem; } }
     * { box-sizing: border-box; }
-    body { margin: 0; color: var(--ink); background: #0b1f30; font: 20px/1.45 system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; }
-    .deck { height: 100vh; overflow: hidden; position: relative; }
-    .slide { display: none; min-height: 100%; padding: clamp(2rem, 6vw, 6rem); background: #fff; }
+    html { -webkit-text-size-adjust: 100%; }
+    body { margin: 0; color: var(--ink); background: #0b1f30; font: 18px/1.45 system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; }
+    .deck { height: 100vh; height: 100dvh; overflow: hidden; position: relative; }
+    .slide { display: none; height: 100%; overflow-y: auto; -webkit-overflow-scrolling: touch; padding: clamp(1.5rem, 6vw, 6rem); padding-bottom: calc(clamp(1.5rem, 6vw, 6rem) + var(--bar-height)); background: #fff; }
     .slide.active { display: flex; flex-direction: column; justify-content: center; }
     .title { color: #fff; background: linear-gradient(135deg, var(--navy), var(--teal)); }
     .eyebrow { color: var(--teal); font-size: .8em; font-weight: 800; letter-spacing: .12em; text-transform: uppercase; }
@@ -35,13 +38,19 @@
     .pillar-tag.accumulation { background: var(--accumulation); }
     .pillar-tag.retirement-income { background: var(--retirement-income); }
     .pillar-tag.longevity-legacy { background: var(--longevity-legacy); }
-    .stage-nav { bottom: 1rem; display: flex; flex-wrap: wrap; gap: .5rem; left: 1.2rem; max-width: 60vw; position: fixed; z-index: 2; }
-    .stage-nav button { background: rgba(255,255,255,.14); border: 1px solid rgba(255,255,255,.4); border-radius: 99rem; color: #fff; cursor: pointer; font: inherit; font-size: .75rem; font-weight: 700; padding: .4rem .8rem; }
+    .bar { align-items: center; background: #08131f; border-top: 1px solid rgba(255,255,255,.1); bottom: 0; display: flex; flex-wrap: wrap; gap: .5rem; height: var(--bar-height); left: 0; padding: .5rem 1rem calc(.5rem + env(safe-area-inset-bottom)); position: fixed; right: 0; z-index: 2; }
+    .stage-nav { display: flex; flex: 1 1 100%; gap: .5rem; overflow-x: auto; -webkit-overflow-scrolling: touch; scrollbar-width: none; }
+    .stage-nav::-webkit-scrollbar { display: none; }
+    .stage-nav button { background: rgba(255,255,255,.28); box-shadow: 0 1px 2px rgba(0,0,0,.35); border: 1px solid rgba(255,255,255,.7); border-radius: 99rem; color: #fff; cursor: pointer; flex: none; font: inherit; font-size: .75rem; font-weight: 700; padding: .5rem 1rem; white-space: nowrap; }
     .stage-nav button.current { background: var(--gold); border-color: var(--gold); color: var(--ink); }
-    .controls { bottom: 1rem; color: #fff; display: flex; gap: .8rem; position: fixed; right: 1.2rem; z-index: 2; }
-    .controls button { background: rgba(11,31,48,.86); border: 1px solid rgba(255,255,255,.45); border-radius: 99rem; color: #fff; cursor: pointer; font: inherit; padding: .45rem .8rem; }
-    .counter { align-self: flex-end; color: #627d98; font-size: .8em; margin-top: auto; }
-    @media print { body, .deck { background: #fff; height: auto; overflow: visible; } .slide, .slide.active { display: flex; min-height: 100vh; page-break-after: always; } .controls, .stage-nav { display: none; } }
+    .controls { display: flex; flex: 1 1 100%; gap: .5rem; justify-content: center; }
+    .controls button { background: rgba(255,255,255,.28); box-shadow: 0 1px 2px rgba(0,0,0,.35); border: 1px solid rgba(255,255,255,.7); border-radius: 99rem; color: #fff; cursor: pointer; font: inherit; min-height: 2.6rem; min-width: 2.6rem; padding: .5rem .9rem; }
+    @media (min-width: 720px) {
+      .bar { flex-wrap: nowrap; }
+      .stage-nav { flex: 1 1 auto; }
+      .controls { flex: none; justify-content: flex-end; margin-left: auto; }
+    }
+    @media print { body, .deck { background: #fff; height: auto; overflow: visible; } .slide, .slide.active { display: flex; min-height: 100vh; padding-bottom: clamp(1.5rem, 6vw, 6rem); page-break-after: always; } .bar { display: none; } }
   </style>
 </head>
 <body>
@@ -54,8 +63,7 @@
     <section class="slide" data-stage="launching">
       <p class="eyebrow">Life stage</p>
       <h1>Launching</h1>
-      <p>20s, single or newly partnered</p>
-      <p class="quote">“Most people your age either have zero coverage or way too little — let's see which one you are.”</p>
+      <p class="quote">You're at the early stages of your career, haven't formed a family yet, and may not own a home of your own.</p>
     </section>
     <section class="slide" data-stage="launching">
       <span class="pillar-tag protection">Protection</span>
@@ -72,6 +80,19 @@
     </section>
     <section class="slide" data-stage="launching">
       <span class="pillar-tag protection">Protection</span>
+      <h2>If you were diagnosed with a terminal illness, how would you pay for treatment and everyday expenses — especially if it also cost you your job?</h2>
+      <p class="why">Medical costs and lost income often hit at the same time. Health insurance may cover treatment, but few people plan for the paycheck gap layered on top of it.</p>
+      <div class="actions">
+        <h3>What you can do about it</h3>
+        <ul>
+          <li>Check your health plan's out-of-pocket maximum so a worst case has a real number attached to it.</li>
+          <li>Look into critical illness or supplemental health coverage that pays a lump sum on diagnosis, on top of medical coverage.</li>
+          <li>Pair that with disability income coverage so lost wages are covered separately from the medical bills.</li>
+        </ul>
+      </div>
+    </section>
+    <section class="slide" data-stage="launching">
+      <span class="pillar-tag protection">Protection</span>
       <h2>If you were diagnosed with a serious illness tomorrow and couldn't work for six months, could you still pay rent and keep your lifestyle — or would you need help?</h2>
       <p class="why">Single earners have no second income to fall back on. This is the fastest way to make protection concrete and personal instead of abstract.</p>
       <div class="actions">
@@ -80,6 +101,19 @@
           <li>Price out an individual disability income policy — it protects the paycheck itself, not just what happens if you die.</li>
           <li>Ask your employer about short- and long-term disability coverage you may already have, and check the benefit amount.</li>
           <li>Build toward 3-6 months of expenses in savings so a coverage gap doesn't immediately become a rent problem.</li>
+        </ul>
+      </div>
+    </section>
+    <section class="slide" data-stage="launching">
+      <span class="pillar-tag liquidity">Liquidity</span>
+      <h2>What growth rate is your emergency fund actually earning — is it keeping pace with inflation, or just sitting there losing value?</h2>
+      <p class="why">An emergency fund still has to be liquid first, but parking it in an account that pays next to nothing quietly loses purchasing power every year it sits there.</p>
+      <div class="actions">
+        <h3>What you can do about it</h3>
+        <ul>
+          <li>Move emergency savings into a high-yield savings account instead of a standard checking or low-rate savings account.</li>
+          <li>Compare a few online banks' current savings rates — the difference is often more than 1% a year for no added risk.</li>
+          <li>Keep the funds liquid and FDIC-insured; growth rate matters less than being able to access the money instantly.</li>
         </ul>
       </div>
     </section>
@@ -125,8 +159,7 @@
     <section class="slide" data-stage="building">
       <p class="eyebrow">Life stage</p>
       <h1>Building</h1>
-      <p>Partnered/married, no kids yet or planning</p>
-      <p class="quote">“Now that your finances are linked, does your coverage actually reflect what your household needs — or is it still what you had when you were single?”</p>
+      <p class="quote">You've paired your life with someone else's — sharing a home, a budget, or plans for a family — even if kids aren't part of the picture yet.</p>
     </section>
     <section class="slide" data-stage="building">
       <span class="pillar-tag protection">Protection</span>
@@ -196,8 +229,7 @@
     <section class="slide" data-stage="growing-family">
       <p class="eyebrow">Life stage</p>
       <h1>Growing family</h1>
-      <p>Kids at home</p>
-      <p class="quote">“If something happened to you tomorrow, would your family's day-to-day life actually stay the same — same house, same school, same routine?”</p>
+      <p class="quote">You're raising kids at home, juggling school, activities, and a career, with less time than ever to think about money.</p>
     </section>
     <section class="slide" data-stage="growing-family">
       <span class="pillar-tag protection">Protection</span>
@@ -267,8 +299,7 @@
     <section class="slide" data-stage="peak-earning">
       <p class="eyebrow">Life stage</p>
       <h1>Peak earning</h1>
-      <p>Teens, college-age kids</p>
-      <p class="quote">“You're earning the most you ever have — is your savings rate keeping pace, or did it plateau a few years ago?”</p>
+      <p class="quote">You're earning more than you ever have, with teenagers or college-age kids at home, and retirement finally starting to feel real.</p>
     </section>
     <section class="slide" data-stage="peak-earning">
       <span class="pillar-tag protection">Protection</span>
@@ -338,8 +369,7 @@
     <section class="slide" data-stage="pre-retirement">
       <p class="eyebrow">Life stage</p>
       <h1>Pre-retirement / empty nest</h1>
-      <p>5-15 years from retirement</p>
-      <p class="quote">“You've got a number in your retirement account — but do you know the actual monthly paycheck that number produces?”</p>
+      <p class="quote">The kids are grown and the house is quieter now — retirement is close enough to plan for, but still far enough that you can adjust course.</p>
     </section>
     <section class="slide" data-stage="pre-retirement">
       <span class="pillar-tag protection">Protection</span>
@@ -409,8 +439,7 @@
     <section class="slide" data-stage="retirement">
       <p class="eyebrow">Life stage</p>
       <h1>Retirement / legacy</h1>
-      <p>Living off assets</p>
-      <p class="quote">“Is your income guaranteed to last as long as you do, or does it depend on the market cooperating?”</p>
+      <p class="quote">You're living off what you've built, drawing on savings and investments instead of a paycheck, and thinking about what you'll leave behind.</p>
     </section>
     <section class="slide" data-stage="retirement">
       <span class="pillar-tag protection">Protection</span>
@@ -478,15 +507,17 @@
       </div>
     </section>
   </main>
-  <nav class="stage-nav" aria-label="Jump to a life stage">
-    <button type="button" data-jump="launching">Launching</button>
-    <button type="button" data-jump="building">Building</button>
-    <button type="button" data-jump="growing-family">Growing family</button>
-    <button type="button" data-jump="peak-earning">Peak earning</button>
-    <button type="button" data-jump="pre-retirement">Pre-retirement / empty nest</button>
-    <button type="button" data-jump="retirement">Retirement / legacy</button>
-  </nav>
-  <div class="controls"><button type="button" id="previous" aria-label="Previous slide">←</button><button type="button" id="next" aria-label="Next slide">→</button></div>
+  <footer class="bar">
+    <nav class="stage-nav" aria-label="Jump to a life stage">
+      <button type="button" data-jump="launching">Launching</button>
+      <button type="button" data-jump="building">Building</button>
+      <button type="button" data-jump="growing-family">Growing family</button>
+      <button type="button" data-jump="peak-earning">Peak earning</button>
+      <button type="button" data-jump="pre-retirement">Pre-retirement / empty nest</button>
+      <button type="button" data-jump="retirement">Retirement / legacy</button>
+    </nav>
+    <div class="controls"><button type="button" id="previous" aria-label="Previous slide">←</button><button type="button" id="next" aria-label="Next slide">→</button></div>
+  </footer>
   <script>
     const slides = [...document.querySelectorAll('.slide')];
     const stageButtons = [...document.querySelectorAll('.stage-nav button')];
