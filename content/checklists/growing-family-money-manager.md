@@ -2,6 +2,7 @@
 id: growing-family-money-manager
 stage: growing-family
 pillar: longevity-legacy
+topic: "Managing money left to kids"
 prompt: "If both parents were gone, is there a plan for who manages the money left behind for your kids — not just who raises them?"
 actions:
   - "Decide who would manage the money left behind — a trustee or executor — separately from who raises the kids."

@@ -2,6 +2,7 @@
 id: pre-retirement-catch-up
 stage: pre-retirement
 pillar: accumulation
+topic: "Catch-up contributions"
 prompt: "Are you still maximizing catch-up contributions while you have earned income to do it with?"
 actions:
   - "Confirm your plan's catch-up contribution limit and whether you're using it."

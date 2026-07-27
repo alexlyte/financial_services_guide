@@ -2,6 +2,7 @@
 id: launching-emergency-fund-growth-rate
 stage: launching
 pillar: liquidity
+topic: "Emergency fund growth rate"
 prompt: "What growth rate is your emergency fund actually earning — is it keeping pace with inflation, or just sitting there losing value?"
 actions:
   - "Move emergency savings into a high-yield savings account instead of a standard checking or low-rate savings account."

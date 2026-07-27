@@ -2,6 +2,7 @@
 id: peak-earning-retirement-pace
 stage: peak-earning
 pillar: accumulation
+topic: "Retirement savings pace"
 prompt: "Are you still on pace to hit your retirement number, or has the last several years of family spending quietly pushed that timeline out?"
 actions:
   - "Compare your current retirement balance to where your original plan expected it to be at this age."

@@ -2,6 +2,7 @@
 id: building-death-of-a-partner
 stage: building
 pillar: protection
+topic: "If a partner passes away"
 prompt: "Have you talked about what happens financially if one of you passes away unexpectedly — not just emotionally, but literally: whose name is on what, and who inherits it?"
 actions:
   - "Review how each account is titled and who's named as beneficiary — update anything left over from before the relationship."

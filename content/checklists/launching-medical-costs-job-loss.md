@@ -2,6 +2,7 @@
 id: launching-medical-costs-job-loss
 stage: launching
 pillar: protection
+topic: "Medical costs and job loss"
 prompt: "If you were diagnosed with a terminal illness, how would you pay for treatment and everyday expenses — especially if it also cost you your job?"
 actions:
   - "Check your health plan's out-of-pocket maximum so a worst case has a real number attached to it."

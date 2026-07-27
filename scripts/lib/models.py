@@ -40,6 +40,7 @@ class ChecklistQuestion:
     id: str
     stage: str
     pillar: str
+    topic: str
     prompt: str
     body: str
     actions: list[str]

@@ -2,6 +2,7 @@
 id: launching-no-will
 stage: launching
 pillar: longevity-legacy
+topic: "Beneficiaries and a will"
 prompt: "If something happened to you, would anyone actually know your wishes — do you have a beneficiary named anywhere, or a will?"
 actions:
   - "Name a beneficiary on every account that allows it — 401(k), IRA, life insurance, bank accounts."

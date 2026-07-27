@@ -2,6 +2,7 @@
 id: building-single-income-shock
 stage: building
 pillar: protection
+topic: "Surviving on one income"
 prompt: "If one of you couldn't work due to illness or injury, could the household still cover rent or the mortgage on one income alone?"
 actions:
   - "Add up what one income alone actually covers each month, and where the shortfall would be."

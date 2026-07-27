@@ -2,6 +2,7 @@
 id: pre-retirement-long-term-care
 stage: pre-retirement
 pillar: longevity-legacy
+topic: "Long-term care plan"
 prompt: "Do you have a long-term care plan, or is the plan 'hope it doesn't happen'?"
 actions:
   - "Get a real quote for long-term care coverage now, while you're still insurable."

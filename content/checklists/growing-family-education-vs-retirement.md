@@ -2,6 +2,7 @@
 id: growing-family-education-vs-retirement
 stage: growing-family
 pillar: accumulation
+topic: "Education vs. retirement savings"
 prompt: "Are you saving for your kids' education in a way that competes with your own retirement savings — or protects it?"
 actions:
   - "Set up separate accounts for education and retirement so one doesn't quietly fund the other."

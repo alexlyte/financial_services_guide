@@ -2,6 +2,7 @@
 id: launching-emergency-fund
 stage: launching
 pillar: liquidity
+topic: "Emergency fund"
 prompt: "If your car broke down and you lost your job in the same month, do you have 3-6 months of expenses saved — or would one bad month land on a credit card?"
 actions:
   - "Open a dedicated high-yield savings account so emergency money isn't mixed with everyday spending."

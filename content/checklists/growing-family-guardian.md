@@ -2,6 +2,7 @@
 id: growing-family-guardian
 stage: growing-family
 pillar: protection
+topic: "Naming a guardian"
 prompt: "Have you named a guardian for your kids in writing, or is that still just a conversation you've had?"
 actions:
   - "Name a guardian in your will, not just in conversation — an unwritten wish isn't legally binding."

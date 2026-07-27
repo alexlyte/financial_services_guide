@@ -2,6 +2,7 @@
 id: pre-retirement-income-longevity
 stage: pre-retirement
 pillar: retirement-income
+topic: "Income lasting your lifetime"
 prompt: "If you retired on your current savings today, would your income last as long as you might actually live?"
 actions:
   - "Run your savings against a longer time horizon than you expect, not just average life expectancy."
