@@ -59,15 +59,23 @@
 <body>
   <main class="deck" aria-label="Financial conversation presentation">
     <section class="slide title active" data-stage="intro">
-      <p class="eyebrow">A conversation about your future</p>
-      <h1>What to think about, wherever life has you right now.</h1>
-      <p>A handful of questions worth sitting with — for yourself and your family — at each stage of life. Use the arrow keys or the controls below to move through them, and jump to any stage at any time.</p>
+      <p class="eyebrow">Start with your life, not a product</p>
+      <h1>Here's what could knock your plans off course — and what to do about it.</h1>
+      <p>A good financial plan starts with what's actually happening in your life right now, then looks at where that tends to create risk, and ends with a short list of moves that keep things on track. Pick the stage below that sounds like you, using the buttons at the bottom of the screen, and we'll take it from there.</p>
     </section>
 {% for stage in stages %}
     <section class="slide" data-stage="{{ stage.id }}">
       <p class="eyebrow">Life stage</p>
       <h1>{{ stage.name }}</h1>
       <p class="quote">{{ stage.you_statement }}</p>
+      <p class="toc-label">Worth asking yourself</p>
+      <p class="why">{{ stage.opening_line }}</p>
+      <div class="actions">
+        <h3>Start here</h3>
+        <ul>
+          <li>{{ stage.quick_win }}</li>
+        </ul>
+      </div>
       <p class="toc-label">What we'll cover</p>
       <ol class="toc">
 {% for question in questions_by_stage[stage.id] %}
